@@ -1,0 +1,192 @@
+@use './variables' as *;
+
+@media (max-width: 840px) {
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    .logo {
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 1rem;
+      background: $azul-escuro;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li a {
+          color: $branco-fundo;
+          font-weight: bold;
+        }
+      }
+    }
+    .menu-toggle {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      cursor: pointer;
+      &::before,
+      &::after,
+      span {
+        content: '';
+        position: absolute;
+        left: 6px;
+        width: 28px;
+        height: 3px;
+        background: #fff;
+        transition: 0.3s ease;
+      }
+      &::before {
+        top: 12px;
+      }
+      &::after {
+        top: 24px;
+      }
+      span {
+        top: 18px;
+      }
+      &.active {
+        &::before {
+          transform: rotate(45deg);
+          top: 18px;
+        }
+        &::after {
+          transform: rotate(-45deg);
+          top: 18px;
+        }
+        span {
+          opacity: 0;
+          transform: scale(0);
+        }
+      }
+    }
+    &.active {
+      nav {
+        display: block;
+      }
+    }
+  }
+
+  /* HERO */
+  .hero {
+    .hero-content-wrapper {
+      flex-direction: column;
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    &-image {
+      margin-top: 2rem;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  /* SERVIÇOS */
+  .servicos {
+    padding: 2rem 1rem;
+    .cards-servicos {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 0 auto;
+    }
+  }
+
+  /* FASES */
+  .fases {
+    .container-fases {
+      flex-direction: column;
+      align-items: center;
+    }
+    .card-fase {
+      max-width: 100%;
+    }
+  }
+
+  /* COMPARATIVO */
+  .comparativo {
+    padding: 2rem 1rem;
+    p {
+      margin: 1rem auto;
+      font-size: 1rem;
+    }
+    .cards-profissionais {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  /* METODOLOGIA */
+  .metodologia {
+    .container-metodologia {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+
+      .grafico-circular {
+        margin-bottom: 1rem;
+        max-width: 250px;
+        max-height: 250px;
+      }
+
+      .desc-metodologia {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  /* TESTEMUNHOS */
+  .testemunhos {
+    .testemunhos-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .testemunho-card {
+      max-width: 90%;
+    }
+  }
+
+  /* CONTATO */
+  .contato {
+    .contato-wrapper {
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    &-info {
+      padding-right: 0;
+      margin-bottom: 2rem;
+      text-align: center;
+      max-width: 100%;
+    }
+  }
+
+  form {
+    max-width: 100%;
+    margin: 0 auto;
+    h3 {
+      font-size: 1.2rem;
+    }
+    button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+$azul-escuro: #0c2e59;
+$azul-medio: #0a7aa6;
+$azul-claro: #0f9fbf;
+$branco-fundo: #f2f2f2;
+$highlight: #12c4e0;
+
+$transition-default: 0.3s ease-in-out;
+
+:root {
+  --azul-escuro: #{$azul-escuro};
+  --azul-medio: #{$azul-medio};
+  --azul-claro: #{$azul-claro};
+  --branco-fundo: #{$branco-fundo};
+  --highligth: #{$highlight};
+
+  --transition-default: #{$transition-default};
+}

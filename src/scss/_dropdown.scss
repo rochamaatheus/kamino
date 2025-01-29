@@ -1,0 +1,225 @@
+@use './variables' as *;
+
+:root {
+  --dropdown-height: 300px;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: $azul-escuro;
+  padding: 20px 5%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 9;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 1fr;
+  gap: 25px;
+  height: var(--dropdown-height);
+  min-height: 250px;
+  max-height: 90vh;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  align-items: stretch;
+
+  // Visibilidade
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+.dropdown-header {
+  color: $branco-fundo;
+  position: sticky;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(var(--dropdown-height) - 40px);
+  padding-right: 10px;
+
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+  }
+
+  // img {
+  //   width: 100%;
+  //   max-width: 250px;
+  //   max-height: 45%;
+  //   height: auto;
+  //   object-fit: contain;
+  //   border-radius: 8px;
+  //   margin-top: auto;
+  //   align-self: center;
+  // }
+}
+
+.services-list {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: calc(var(--dropdown-height) - 50px);
+  padding: 0 15px 15px 15px;
+  scrollbar-width: thin;
+  scrollbar-color: $highlight $azul-escuro;
+  display: flex;
+  align-items: center;
+  align-self: center;
+}
+
+.services {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  align-items: center;
+}
+
+.service-card {
+  cursor: pointer;
+  position: relative;
+  width: 280px;
+  height: calc(var(--dropdown-height) - 100px);
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: $azul-escuro;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 0;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
+
+    img {
+      filter: none;
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+  }
+
+  .service-card-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    padding: 15px;
+  }
+}
+
+.titulo-principal {
+  color: $branco-fundo;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subtitulo {
+  color: $branco-fundo;
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+.destaque-link {
+  font-weight: bold;
+  color: $highlight;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &.underline-grow::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: lighten($highlight, 10%);
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .dropdown-content {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: var(--dropdown-height);
+    padding: 15px;
+  }
+
+  .dropdown-header {
+    height: auto;
+    gap: 10px;
+    padding-right: 0;
+
+    img {
+      max-height: 150px;
+      margin-top: 15px;
+    }
+  }
+
+  .services-list {
+    height: calc(var(--dropdown-height) - 200px);
+  }
+}
+
+@media (max-width: 576px) {
+  .service-card {
+    width: 220px;
+    height: calc(var(--dropdown-height) - 190px);
+  }
+
+  .dropdown-header {
+    img {
+      max-height: 120px;
+    }
+  }
+}

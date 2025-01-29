@@ -1,0 +1,70 @@
+@use './variables' as *;
+
+.hero {
+  background: linear-gradient(130deg, $azul-escuro 40%, $azul-medio 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  .hero-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5rem 0;
+  }
+
+  .hero-content {
+    max-width: 600px;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      background-color: $azul-claro;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color $transition-default;
+
+      &:hover {
+        background-color: $azul-medio;
+      }
+    }
+  }
+
+  .hero-image {
+    flex-shrink: 0;
+
+    img {
+      width: 380px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(rgba(255, 255, 255, 0.3), transparent 80%);
+    top: -50px;
+    right: -100px;
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+}

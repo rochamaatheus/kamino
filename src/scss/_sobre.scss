@@ -1,0 +1,12 @@
+@use './variables' as *;
+
+.sobre {
+  background-color: $branco-fundo;
+  text-align: center;
+  p {
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+    color: #333;
+  }
+}

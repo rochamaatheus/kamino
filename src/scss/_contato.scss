@@ -1,0 +1,90 @@
+@use './variables' as *;
+
+.contato {
+  background-color: $azul-escuro;
+  color: #fff;
+
+  .contato-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 4rem 0; // vertical spacing
+  }
+}
+
+.contato-info {
+  max-width: 600px;
+  padding-right: 2rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #ddd;
+  }
+}
+
+form {
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+
+  h3 {
+    color: $azul-escuro;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+    font-weight: 600;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+    background-color: $azul-escuro;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color $transition-default;
+
+    &:hover {
+      background-color: $azul-medio;
+    }
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  display: none;
+}

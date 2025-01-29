@@ -1,0 +1,35 @@
+@use './variables' as *;
+
+.header-bg {
+  background-color: $azul-escuro;
+  .header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #fff;
+    }
+    nav {
+      color: $branco-fundo;
+      ul {
+        list-style: none;
+        display: flex;
+        li {
+          margin: 0 15px;
+          a {
+            font-size: 18px;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+}

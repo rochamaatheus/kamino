@@ -1,0 +1,60 @@
+@use './variables' as *;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.underline-grow {
+  position: relative;
+  display: inline-block;
+  color: $branco-fundo;
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $highlight;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: $highlight;
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+section {
+  padding: 4rem 0;
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: $azul-escuro;
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      margin: 0.5rem auto 0;
+      width: 80px;
+      height: 4px;
+      background-color: $azul-claro;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@use './variables' as *;
+
+.testemunhos {
+  background: linear-gradient(140deg, $azul-medio 40%, $azul-claro 100%);
+  color: #fff;
+  text-align: center;
+
+  h2 {
+    color: #fff;
+  }
+}
+
+.testemunhos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.testemunho-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 300px;
+  transition: transform $transition-default;
+  text-align: left;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.testemunho-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+    object-fit: cover;
+  }
+}
+
+.testemunho-nome {
+  font-weight: 700;
+}
+
+.testemunho-cargo {
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+.testemunho-texto {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

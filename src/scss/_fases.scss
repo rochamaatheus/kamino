@@ -1,0 +1,44 @@
+@use './variables' as *;
+
+.fases {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+.container-fases {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card-fase {
+  background-color: #fff;
+  border: 2px solid $azul-medio;
+  border-radius: 8px;
+  flex: 1 1 220px;
+  max-width: 250px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform $transition-default, box-shadow $transition-default;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    color: $azul-medio;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.4;
+  }
+}
