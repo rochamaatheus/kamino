@@ -2,11 +2,107 @@
 
 .sobre {
   background-color: $branco-fundo;
-  text-align: center;
-  p {
+  padding: 6rem 0;
+
+  .separador-efeito {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, $azul-claro, $azul-medio);
+    margin: 1.5rem auto;
+    border-radius: 2px;
+  }
+
+  .destaque-principal {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: $azul-escuro;
     max-width: 800px;
-    margin: 0 auto 2rem auto;
-    line-height: 1.6;
-    color: #333;
+    margin: 0 auto 2rem;
+    font-weight: 500;
+    position: relative;
+    padding: 1.5rem;
+    background: rgba($azul-claro, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid $azul-claro;
+  }
+
+  .separador-estilizado {
+    height: 1px;
+    background: rgba($azul-medio, 0.1);
+    margin: 2.5rem auto;
+    width: 60%;
+  }
+
+  .texto-base {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+  }
+
+  .pilares-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .subtitulo-pilares {
+    color: $azul-medio;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .lista-pilares {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    li {
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      align-items: center;
+      background: rgba($azul-claro, 0.03);
+      border-radius: 6px;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateX(5px);
+      }
+    }
+  }
+
+  .icone-check {
+    color: $azul-claro;
+    font-weight: 700;
+    margin-right: 1rem;
+    font-size: 1.4rem;
+    min-width: 25px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 4rem 0;
+
+    .destaque-principal {
+      font-size: 1.1rem;
+      padding: 1rem;
+    }
+
+    .lista-pilares {
+      grid-template-columns: 1fr;
+    }
+
+    .separador-estilizado {
+      width: 80%;
+      margin: 2rem auto;
+    }
   }
 }

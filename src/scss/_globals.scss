@@ -48,13 +48,5 @@ section {
     margin-bottom: 2rem;
     color: $azul-escuro;
     position: relative;
-    &::after {
-      content: '';
-      display: block;
-      margin: 0.5rem auto 0;
-      width: 80px;
-      height: 4px;
-      background-color: $azul-claro;
-    }
   }
 }
