@@ -179,7 +179,7 @@
   }
 
   &:hover {
-    color: lighten($highlight, 10%);
+    color: $highlight;
 
     &::after {
       width: 100%;
