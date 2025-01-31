@@ -12,6 +12,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 4rem 0;
 
   &::before {
@@ -27,6 +28,7 @@
   }
 
   .hero-content-wrapper {
+    margin: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -60,7 +62,6 @@
       line-height: 1.8;
       margin-bottom: 2.5rem;
       opacity: 0.9;
-      max-width: 500px;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.8s ease 0.4s forwards;

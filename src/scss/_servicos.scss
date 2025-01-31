@@ -88,30 +88,27 @@
   }
 
   .cards-servicos {
-    overflow: visible;
+    overflow: hidden;
     position: relative;
     padding: 3rem 0;
-    margin: 0 -2rem;
+    margin: 0 auto;
+    max-width: 1200px;
   }
 
-  .cards-servicos-items {
-    display: inline-flex;
-    gap: 3rem;
-    animation: scroll-servicos-carousel 40s linear infinite;
-    padding: 0 2rem;
-
-    &:hover {
-      animation-play-state: paused;
-    }
-  }
-
-  @keyframes scroll-servicos-carousel {
+  @keyframes scroll {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-310%);
     }
+  }
+
+  .cards-servicos-items {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 22s linear infinite;
+    will-change: transform;
   }
 
   .card-servico {

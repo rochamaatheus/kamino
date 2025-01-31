@@ -43,112 +43,29 @@
     }
 
     nav {
+      color: $branco-fundo;
       ul {
         list-style: none;
         display: flex;
-        gap: 1.5rem;
-
         li {
-          position: relative;
-
+          margin: 0 15px;
           a {
-            font-size: 1.1rem;
-            color: rgba($branco-fundo, 0.9);
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-            position: relative;
-
-            &::after {
-              content: '';
-              position: absolute;
-              bottom: -2px;
-              left: 0;
-              width: 100%;
-              height: 2px;
-              background: $azul-claro;
-              transform: scaleX(0);
-              transition: transform 0.3s ease;
-            }
-
-            &:hover {
-              color: #fff;
-
-              &::after {
-                transform: scaleX(1);
-              }
-            }
-          }
-
-          // Efeito de destaque no item ativo
-          &.active a {
-            color: #fff;
-            font-weight: 600;
-
-            &::after {
-              transform: scaleX(1);
-            }
+            font-size: 18px;
+            padding: 10px;
           }
         }
       }
     }
-
-    // Botão de menu mobile (opcional)
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
   }
 
   // Responsividade
-  @media (max-width: 768px) {
+  @media (max-width: 993px) {
     .header {
       height: 70px;
       padding: 0 1.5rem;
 
       .logo {
         font-size: 1.6rem;
-      }
-
-      nav {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        width: 100%;
-        background: $azul-escuro;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        opacity: 0;
-        visibility: hidden;
-
-        &.active {
-          transform: translateX(0);
-          opacity: 1;
-          visibility: visible;
-        }
-
-        ul {
-          flex-direction: column;
-          align-items: center;
-          padding: 1rem 0;
-
-          li {
-            margin: 0.5rem 0;
-
-            a {
-              font-size: 1.2rem;
-              padding: 0.8rem 1.5rem;
-            }
-          }
-        }
-      }
-
-      .menu-toggle {
-        display: block;
       }
     }
   }

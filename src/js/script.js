@@ -1,106 +1,152 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const servicosCarousel = document.querySelector('.cards-servicos-items');
-
-  if (servicosCarousel) {
-    const items = Array.from(servicosCarousel.children);
-    const itemsCount = items.length;
-
-    // Duplica os itens uma vez para criar um loop infinito suave
-    if (itemsCount > 1) {
-      items.forEach(item => {
-        const clone = item.cloneNode(true);
-        servicosCarousel.appendChild(clone);
-      });
-
-      // Calcula a largura total dos itens duplicados
-      const totalWidth = servicosCarousel.scrollWidth;
-      const speed = 300;
-      const duration = totalWidth / speed;
-
-      servicosCarousel.style.animationDuration = `${duration}s`;
-    }
+// Duplicação de cards (caso necessário para algum slider?)
+const duplicarCardsServicos = () => {
+  const entregasItems = document.querySelector('.cards-servicos-items');
+  if (entregasItems) {
+    entregasItems.innerHTML += entregasItems.innerHTML;
   }
-});
+};
+duplicarCardsServicos();
 
-const menuToggle = document.getElementById('menu-toggle');
-const headerEl = document.querySelector('.header');
+// Controle do menu mobile
+const inicializarMenuMobile = () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const headerEl = document.querySelector('.header');
+  const navEl = document.querySelector('nav');
 
-menuToggle.addEventListener('click', () => {
-  menuToggle.classList.toggle('active');
-  headerEl.classList.toggle('active');
-});
+  const toggleMenu = () => {
+    menuToggle.classList.toggle('active');
+    headerEl.classList.toggle('active');
+    navEl.classList.toggle('active');
+  };
 
-const dropdownToggle = document.getElementById('dropdown-toggle');
-const dropdown = document.getElementById('dropdown');
-let hoverTimeout;
+  // Event listeners
+  menuToggle.addEventListener('click', toggleMenu);
 
-dropdownToggle.addEventListener('mouseover', () => {
-  dropdown.classList.add('active');
-  clearTimeout(hoverTimeout);
-});
+  // Fechar menu ao clicar nos links
+  document.querySelectorAll('nav ul li a').forEach(item => {
+    item.addEventListener('click', () => {
+      navEl.classList.remove('active');
+      menuToggle.classList.remove('active');
+      headerEl.classList.remove('active');
+    });
+  });
 
-dropdownToggle.addEventListener('mouseout', () => {
-  hoverTimeout = setTimeout(() => {
-    if (!dropdown.matches(':hover')) {
-      dropdown.classList.remove('active');
+  // Fechar menu ao clicar fora
+  document.addEventListener('click', event => {
+    if (!navEl.contains(event.target) && !menuToggle.contains(event.target)) {
+      navEl.classList.remove('active');
+      menuToggle.classList.remove('active');
+      headerEl.classList.remove('active');
     }
-  }, 300);
-});
+  });
+};
+inicializarMenuMobile();
 
-dropdown.addEventListener('mouseover', () => {
-  clearTimeout(hoverTimeout);
-});
+// Dropdown com hover
+const inicializarDropdown = () => {
+  const dropdownToggle = document.getElementById('dropdown-toggle');
+  const dropdown = document.getElementById('dropdown');
+  let hoverTimeout;
+  let isDropdownActive = false;
 
-dropdown.addEventListener('mouseout', () => {
-  hoverTimeout = setTimeout(() => {
-    dropdown.classList.remove('active');
-  }, 200);
-});
+  const showDropdown = () => {
+    clearTimeout(hoverTimeout);
+    dropdown.classList.add('active');
+    isDropdownActive = true;
+  };
 
-// =========== INTERSECTION OBSERVER PARA FADE-IN ===========
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
+  const hideDropdown = () => {
+    hoverTimeout = setTimeout(() => {
+      if (!dropdown.matches(':hover') && !dropdownToggle.matches(':hover')) {
+        dropdown.classList.remove('active');
+        isDropdownActive = false;
+      }
+    }, 100);
+  };
+
+  // Event listeners para o toggle
+  dropdownToggle.addEventListener('mouseenter', () => {
+    if (!isDropdownActive) showDropdown();
+  });
+
+  dropdownToggle.addEventListener('mouseleave', hideDropdown);
+
+  // Event listeners para o dropdown
+  dropdown.addEventListener('mouseenter', showDropdown);
+  dropdown.addEventListener('mouseleave', hideDropdown);
+
+  // Fechar ao clicar fora
+  document.addEventListener('click', e => {
+    if (!dropdown.contains(e.target) && !dropdownToggle.contains(e.target)) {
+      dropdown.classList.remove('active');
+      isDropdownActive = false;
+    }
+  });
+};
+inicializarDropdown();
+
+// Animação de scroll (Intersection Observer)
+const inicializarAnimacoesScroll = () => {
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Adiciona a classe de animação
+          entry.target.classList.add('show');
+
+          // Para de observar o elemento após a animação
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }, // Ajuste o threshold conforme necessário
+  );
+
+  // Observa todos os elementos com a classe .fade-in
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+};
+inicializarAnimacoesScroll();
+
+// Validação de formulário
+const inicializarFormulario = () => {
+  const form = document.getElementById('contactForm');
+  const formError = document.getElementById('formError');
+  const camposObrigatorios = [
+    'nome',
+    'email',
+    'telefone',
+    'base_investimento',
+    'base_funcionarios',
+    'mensagem',
+  ];
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let camposVazios = false;
+
+    // Verificar campos obrigatórios
+    camposObrigatorios.forEach(campoId => {
+      const campo = document.getElementById(campoId);
+      if (campo.value.trim() === '') {
+        camposVazios = true;
+        campo.classList.add('error');
+      } else {
+        campo.classList.remove('error');
       }
     });
-  },
-  { threshold: 0.3 },
-);
 
-const fadeElements = document.querySelectorAll('.fade-in');
-fadeElements.forEach(el => observer.observe(el));
+    if (camposVazios) {
+      formError.style.display = 'block';
+      return;
+    }
 
-// =========== VALIDAÇÃO SIMPLES DO FORMULÁRIO ===========
-const form = document.getElementById('contactForm');
-const formError = document.getElementById('formError');
-
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const nome = document.getElementById('nome');
-  const email = document.getElementById('email');
-  const telefone = document.getElementById('telefone');
-  const investimento = document.getElementById('base_investimento');
-  const funcionarios = document.getElementById('base_funcionarios');
-  const mensagem = document.getElementById('mensagem');
-
-  if (
-    nome.value.trim() === '' ||
-    email.value.trim() === '' ||
-    telefone.value.trim() === '' ||
-    investimento.value === '' ||
-    funcionarios.value === '' ||
-    mensagem.value.trim() === ''
-  ) {
-    formError.style.display = 'block';
-    return;
-  } else {
     formError.style.display = 'none';
-  }
-
-  // Exemplo de ação posterior:
-  alert(`Olá, ${nome.value}! Recebemos sua mensagem e em breve retornaremos.`);
-  form.reset();
-});
+    alert(
+      `Olá, ${
+        document.getElementById('nome').value
+      }! Recebemos sua mensagem e em breve retornaremos.`,
+    );
+    form.reset();
+  });
+};
+inicializarFormulario();

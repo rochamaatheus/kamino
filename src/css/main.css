@@ -122,92 +122,27 @@ section h2 {
   font-size: 2rem;
   transform: rotate(-45deg);
 }
+.header-bg .header nav {
+  color: #f2f2f2;
+}
 .header-bg .header nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
 }
 .header-bg .header nav ul li {
-  position: relative;
+  margin: 0 15px;
 }
 .header-bg .header nav ul li a {
-  font-size: 1.1rem;
-  color: rgba(242, 242, 242, 0.9);
-  padding: 0.5rem 1rem;
-  transition: all 0.3s ease;
-  position: relative;
+  font-size: 18px;
+  padding: 10px;
 }
-.header-bg .header nav ul li a::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: #0f9fbf;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-.header-bg .header nav ul li a:hover {
-  color: #fff;
-}
-.header-bg .header nav ul li a:hover::after {
-  transform: scaleX(1);
-}
-.header-bg .header nav ul li.active a {
-  color: #fff;
-  font-weight: 600;
-}
-.header-bg .header nav ul li.active a::after {
-  transform: scaleX(1);
-}
-.header-bg .header .menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-@media (max-width: 768px) {
+@media (max-width: 993px) {
   .header-bg .header {
     height: 70px;
     padding: 0 1.5rem;
   }
   .header-bg .header .logo {
     font-size: 1.6rem;
-  }
-  .header-bg .header nav {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 100%;
-    background: #0c2e59;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
-  }
-  .header-bg .header nav.active {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-  }
-  .header-bg .header nav ul {
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 0;
-  }
-  .header-bg .header nav ul li {
-    margin: 0.5rem 0;
-  }
-  .header-bg .header nav ul li a {
-    font-size: 1.2rem;
-    padding: 0.8rem 1.5rem;
-  }
-  .header-bg .header .menu-toggle {
-    display: block;
   }
 }
 
@@ -217,6 +152,7 @@ section h2 {
 }
 
 .dropdown-content {
+  display: grid;
   position: absolute;
   top: 69px;
   left: 50%;
@@ -227,18 +163,19 @@ section h2 {
   padding: 2rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
   z-index: 9;
-  display: grid;
   grid-template-columns: 300px 1fr;
   gap: 2rem;
   min-height: var(--dropdown-height);
   border-radius: 0 0 var(--dropdown-border-radius) var(--dropdown-border-radius);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(15, 159, 191, 0.1);
 }
 .dropdown-content.active {
+  pointer-events: initial;
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(10px);
@@ -434,6 +371,7 @@ section h2 {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 4rem 0;
 }
 .hero::before {
@@ -448,6 +386,7 @@ section h2 {
   animation: float 20s linear infinite;
 }
 .hero .hero-content-wrapper {
+  margin: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -479,7 +418,6 @@ section h2 {
   line-height: 1.8;
   margin-bottom: 2.5rem;
   opacity: 0.9;
-  max-width: 500px;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.8s ease 0.4s forwards;
@@ -948,27 +886,25 @@ section h2 {
   animation: rotate 20s linear infinite;
 }
 .servicos .cards-servicos {
-  overflow: visible;
+  overflow: hidden;
   position: relative;
   padding: 3rem 0;
-  margin: 0 -2rem;
+  margin: 0 auto;
+  max-width: 1200px;
 }
-.servicos .cards-servicos-items {
-  display: inline-flex;
-  gap: 3rem;
-  animation: scroll-servicos-carousel 40s linear infinite;
-  padding: 0 2rem;
-}
-.servicos .cards-servicos-items:hover {
-  animation-play-state: paused;
-}
-@keyframes scroll-servicos-carousel {
+@keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-310%);
   }
+}
+.servicos .cards-servicos-items {
+  display: flex;
+  gap: 3rem;
+  animation: scroll 22s linear infinite;
+  will-change: transform;
 }
 .servicos .card-servico {
   flex: 0 0 360px;
@@ -1382,7 +1318,7 @@ footer {
   font-size: 0.9rem;
 }
 
-@media (max-width: 840px) {
+@media (max-width: 890px) {
   .header {
     flex-wrap: wrap;
     height: auto;
