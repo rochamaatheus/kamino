@@ -819,6 +819,7 @@ section h2 {
   position: relative;
   overflow: hidden;
   text-align: center;
+  /* Animação só quando o container pai tiver a classe active */
 }
 .servicos::before {
   content: "";
@@ -904,6 +905,9 @@ section h2 {
   display: flex;
   gap: 3rem;
   will-change: transform;
+}
+.servicos .cards-servicos--active .cards-servicos-items {
+  animation: scroll 22s linear infinite;
 }
 .servicos .card-servico {
   flex: 0 0 360px;

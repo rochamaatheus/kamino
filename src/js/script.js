@@ -107,6 +107,34 @@ const inicializarAnimacoesScroll = () => {
 };
 inicializarAnimacoesScroll();
 
+// Animação de Carrossel
+function setupScrollAnimation(selector, threshold = 0.4) {
+  const element = document.querySelector(selector);
+
+  if (!element) {
+    console.error(`Elemento com o seletor "${selector}" não encontrado.`);
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('cards-servicos--active');
+        } else {
+          entry.target.classList.remove('cards-servicos--active');
+        }
+      });
+    },
+    { threshold },
+  );
+
+  observer.observe(element);
+}
+
+// Uso
+setupScrollAnimation('.cards-servicos');
+
 // Validação de formulário
 const inicializarFormulario = () => {
   const form = document.getElementById('contactForm');
