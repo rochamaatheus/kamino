@@ -1,9 +1,10 @@
+@use 'sass:color';
 @use './variables' as *;
 
 .header-bg {
   background: linear-gradient(
     145deg,
-    darken($azul-escuro, 5%) 0%,
+    color.mix($azul-escuro, #000000, 95%) 0%,
     $azul-escuro 100%
   );
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);

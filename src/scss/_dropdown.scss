@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use './variables' as *;
 
 :root {
@@ -15,7 +16,7 @@
   max-width: 1200px;
   background: linear-gradient(
     145deg,
-    darken($azul-escuro, 5%) 0%,
+    color.mix($azul-escuro, #000000, 95%) 0%,
     $azul-escuro 100%
   );
   padding: 2rem;

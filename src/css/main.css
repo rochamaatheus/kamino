@@ -88,7 +88,7 @@ section h2 {
 }
 
 .header-bg {
-  background: linear-gradient(145deg, rgb(8.9702970297, 34.3861386139, 66.5297029703) 0%, #0c2e59 100%);
+  background: linear-gradient(145deg, rgb(11.4, 43.7, 84.55) 0%, #0c2e59 100%);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -159,7 +159,7 @@ section h2 {
   transform: translateX(-50%);
   width: 90%;
   max-width: 1200px;
-  background: linear-gradient(145deg, rgb(8.9702970297, 34.3861386139, 66.5297029703) 0%, #0c2e59 100%);
+  background: linear-gradient(145deg, rgb(11.4, 43.7, 84.55) 0%, #0c2e59 100%);
   padding: 2rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
   z-index: 9;
@@ -364,7 +364,7 @@ section h2 {
   }
 }
 .hero {
-  background: linear-gradient(145deg, rgb(8.9702970297, 34.3861386139, 66.5297029703) 0%, #0a7aa6 100%);
+  background: linear-gradient(145deg, rgb(11.4, 43.7, 84.55) 0%, #0a7aa6 100%);
   color: #fff;
   position: relative;
   overflow: hidden;
@@ -814,7 +814,7 @@ section h2 {
   }
 }
 .servicos {
-  background: linear-gradient(135deg, rgb(5.9405940594, 22.7722772277, 44.0594059406) 0%, #0c2e59 100%);
+  background: linear-gradient(135deg, rgb(10.8, 41.4, 80.1), #0c2e59 100%);
   padding: 3rem 0 5rem;
   position: relative;
   overflow: hidden;
@@ -903,7 +903,6 @@ section h2 {
 .servicos .cards-servicos-items {
   display: flex;
   gap: 3rem;
-  animation: scroll 22s linear infinite;
   will-change: transform;
 }
 .servicos .card-servico {
