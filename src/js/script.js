@@ -1,3 +1,27 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const servicosCarousel = document.querySelector('.cards-servicos-items');
+
+  if (servicosCarousel) {
+    const items = Array.from(servicosCarousel.children);
+    const itemsCount = items.length;
+
+    // Duplica os itens uma vez para criar um loop infinito suave
+    if (itemsCount > 1) {
+      items.forEach(item => {
+        const clone = item.cloneNode(true);
+        servicosCarousel.appendChild(clone);
+      });
+
+      // Calcula a largura total dos itens duplicados
+      const totalWidth = servicosCarousel.scrollWidth;
+      const speed = 300;
+      const duration = totalWidth / speed;
+
+      servicosCarousel.style.animationDuration = `${duration}s`;
+    }
+  }
+});
+
 const menuToggle = document.getElementById('menu-toggle');
 const headerEl = document.querySelector('.header');
 
