@@ -182,6 +182,43 @@ function setupScrollAnimation(selector, threshold = 0.4, responsive = true) {
 }
 setupScrollAnimation('.cards-servicos');
 setupScrollAnimation('#comparativo', 0.4, false);
+setupScrollAnimation('#metodologia', 0.4, false);
+
+// Define o offset para os marcadores (caso seja utilizado no CSS)
+document.documentElement.style.setProperty('--circle-offset', '25px');
+
+const updateTimeline = () => {
+  const container = document.querySelector('.desc-metodologia');
+  if (!container) return;
+
+  const verticalLine = container.querySelector('.vertical-line');
+  const { top: containerTop } = container.getBoundingClientRect();
+  const containerHeight = container.offsetHeight;
+  const activationOffset = 120;
+
+  // Calcula a altura do preenchimento, limitando entre 0 e a altura do container
+  let fillHeight = window.innerHeight - activationOffset - containerTop;
+  fillHeight = Math.min(Math.max(fillHeight, 0), containerHeight);
+
+  // Atualiza a variável CSS com o percentual de preenchimento
+  const fillPercent = (fillHeight / containerHeight) * 100;
+  verticalLine.style.setProperty('--line-fill', `${fillPercent}%`);
+
+  // Ativa ou desativa cada tópico com base na posição do marcador
+  container.querySelectorAll('.topic').forEach(topic => {
+    const h3 = topic.querySelector('h3');
+    if (!h3) return;
+    const { top: h3Top, height: h3Height } = h3.getBoundingClientRect();
+    const markerCenter = h3Top - containerTop + h3Height / 2;
+    topic.classList.toggle('active', fillHeight >= markerCenter);
+  });
+};
+
+// Atualiza a timeline nos eventos de scroll e resize
+['scroll', 'resize'].forEach(event =>
+  window.addEventListener(event, updateTimeline),
+);
+updateTimeline();
 
 // Uso
 setupScrollAnimation('.cards-servicos');

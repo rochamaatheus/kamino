@@ -1306,11 +1306,15 @@ section h2 {
 }
 
 .metodologia {
-  background-color: #fff;
+  background-color: #f9f9f9;
   text-align: center;
+  padding: 6rem 1rem;
 }
 .metodologia h2 {
   color: #0c2e59;
+  font-size: 2.5rem;
+  margin-bottom: 3.2rem;
+  font-weight: 700;
 }
 
 .container-metodologia {
@@ -1318,36 +1322,132 @@ section h2 {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  max-width: 1000px;
+  gap: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .grafico-circular {
-  width: 300px;
-  height: 300px;
-  background: url("../img/imagem.avif") center/cover no-repeat;
+  width: 350px;
+  height: 350px;
+  background: url(../img/imagem.avif) center/cover no-repeat;
   border-radius: 50%;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .desc-metodologia {
-  max-width: 400px;
+  position: relative;
+  max-width: 500px;
   text-align: left;
+  padding-left: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-.desc-metodologia h3 {
-  color: #0a7aa6;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 700;
+.desc-metodologia .vertical-line {
+  position: absolute;
+  left: 20px;
+  top: -1rem;
+  width: 3px;
+  height: 100%;
+  background: #ddd;
+  overflow: hidden;
+  z-index: 0;
 }
-.desc-metodologia p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  color: #333;
+.desc-metodologia .vertical-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: var(--line-fill, 0%);
+  background: #0a7aa6;
+  transition: height 0.3s ease-out;
 }
 
+.topic {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.topic h3 {
+  margin: 0 0 1rem;
+  padding-left: 25px;
+  position: relative;
+  font-size: 1.25rem;
+  color: #0c2e59;
+  font-weight: 700;
+}
+.topic h3::before {
+  content: "";
+  position: absolute;
+  left: -47.9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border: 3px solid #0a7aa6;
+  border-radius: 50%;
+  background: #fff;
+  transition: background 0.3s ease;
+  z-index: 1;
+}
+.topic p {
+  line-height: 1.8;
+  margin: 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.metodologia.anime--active .grafico-circular,
+.metodologia.anime--active .desc-metodologia {
+  opacity: 1;
+  transform: translateY(0);
+}
+.metodologia.anime--active .topic.active h3::before {
+  background: #0a7aa6;
+}
+
+@media (max-width: 768px) {
+  .container-metodologia {
+    flex-direction: column;
+  }
+  .grafico-circular {
+    width: 280px;
+    height: 280px;
+  }
+  .desc-metodologia {
+    max-width: 100%;
+    padding-left: 40px;
+  }
+  .topic h3::before {
+    left: -27px;
+  }
+}
+@media (max-width: 890px) {
+  .desc-metodologia {
+    padding-left: 0;
+  }
+  .desc-metodologia .vertical-line {
+    display: none;
+  }
+  .topic {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .topic h3 {
+    padding-left: 0;
+  }
+  .topic h3::before {
+    display: none;
+  }
+}
 .testemunhos {
   background: linear-gradient(140deg, #0a7aa6 40%, #0f9fbf 100%);
   color: #fff;

@@ -1,11 +1,15 @@
 @use './variables' as *;
 
 .metodologia {
-  background-color: #fff;
+  background-color: #f9f9f9; // Fundo mais suave
   text-align: center;
+  padding: 6rem 1rem;
 
   h2 {
     color: $azul-escuro;
+    font-size: 2.5rem;
+    margin-bottom: 3.2rem;
+    font-weight: 700;
   }
 }
 
@@ -14,34 +18,148 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  max-width: 1000px;
+  gap: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .grafico-circular {
-  width: 300px;
-  height: 300px;
-  background: url('../img/imagem.avif') center/cover no-repeat;
+  width: 350px;
+  height: 350px;
+  background: url(../img/imagem.avif) center/cover no-repeat;
   border-radius: 50%;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 15%);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .desc-metodologia {
-  max-width: 400px;
+  position: relative;
+  max-width: 500px;
   text-align: left;
+  padding-left: 60px; // Espaço para a linha vertical
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  // Linha vertical
+  .vertical-line {
+    position: absolute;
+    left: 20px; // Posição da linha dentro do container
+    top: -1rem;
+    width: 3px;
+    height: 100%;
+    background: #ddd;
+    overflow: hidden;
+    z-index: 0; // Linha atrás dos marcadores
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: var(--line-fill, 0%);
+      background: $azul-medio;
+      transition: height 0.3s ease-out;
+    }
+  }
+}
+
+.topic {
+  position: relative;
+  margin-bottom: 2.5rem;
 
   h3 {
-    color: $azul-medio;
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    padding-left: 25px; // Espaço para o marcador
+    position: relative;
+    font-size: 1.25rem;
+    color: $azul-escuro;
     font-weight: 700;
+
+    // Marcador (bolinha)
+    &::before {
+      content: '';
+      position: absolute;
+      left: -47.9px; // Alinha o centro da bolinha com a linha (ajuste conforme necessário)
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      border: 3px solid $azul-medio;
+      border-radius: 50%;
+      background: #fff;
+      transition: background 0.3s ease;
+      z-index: 1; // Marcador na frente da linha
+    }
   }
 
   p {
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    color: #333;
+    line-height: 1.8;
+    margin: 0;
+    color: #555;
+    font-size: 1rem;
+  }
+}
+
+// Animação (exemplo do que você já tinha)
+.metodologia.anime--active {
+  .grafico-circular,
+  .desc-metodologia {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .topic.active h3::before {
+    background: $azul-medio;
+  }
+}
+
+// Responsividade para telas menores
+@media (max-width: 768px) {
+  .container-metodologia {
+    flex-direction: column;
+  }
+  .grafico-circular {
+    width: 280px;
+    height: 280px;
+  }
+  .desc-metodologia {
+    max-width: 100%;
+    padding-left: 40px; // Ajuste do espaço para a linha em telas menores
+  }
+  .topic h3::before {
+    left: calc(
+      20px - 40px - 7px
+    ); // Recalcula a posição do marcador para dispositivos móveis
+  }
+}
+
+// Para viewports abaixo de 891px: desativa a linha vertical e transforma os tópicos em cards
+@media (max-width: 890px) {
+  .desc-metodologia {
+    padding-left: 0; // Remove o espaço reservado para a linha
+    .vertical-line {
+      display: none; // Oculta a linha vertical
+    }
+  }
+
+  .topic {
+    background: #fff; // Fundo branco para o card
+    border: 1px solid #ddd; // Borda suave
+    border-radius: 8px; // Bordas arredondadas
+    padding: 1.5rem;
+    margin-bottom: 1.5rem; // Espaço entre os cards
+
+    // Ajusta o título, removendo o espaço do marcador
+    h3 {
+      padding-left: 0;
+
+      &::before {
+        display: none; // Remove o marcador
+      }
+    }
   }
 }
