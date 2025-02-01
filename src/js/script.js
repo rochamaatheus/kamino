@@ -107,7 +107,9 @@ const inicializarAnimacoesScroll = () => {
 };
 inicializarAnimacoesScroll();
 
-function setupScrollAnimation(selector, threshold = 0.4) {
+// Anima ao aparecer com reset de translateX e controle de responsividade.
+// Uma vez ativado, a animação não é desativada mesmo se o elemento sair da viewport.
+function setupScrollAnimation(selector, threshold = 0.4, responsive = true) {
   const element = document.querySelector(selector);
 
   if (!element) {
@@ -116,22 +118,31 @@ function setupScrollAnimation(selector, threshold = 0.4) {
   }
 
   let observer = null;
+  let activated = false; // Flag que indica se a animação já foi ativada
   let isWideViewport = () => window.innerWidth > 768;
 
   const initAnimation = () => {
-    if (!isWideViewport() || observer) return;
+    // Se for responsivo e a viewport não for larga, não inicializa
+    // Ou se o observer já foi criado (ou já ativado), sai
+    if ((responsive && !isWideViewport()) || observer) return;
 
     observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          entry.target.classList.toggle(
-            'cards-servicos--active',
-            entry.isIntersecting,
-          );
+          // Se o elemento está visível e ainda não foi ativado, ativa a animação
+          if (entry.isIntersecting && !activated) {
+            activated = true;
+            entry.target.classList.add('anime--active');
+            // Se houver alguma transformação inline, opcionalmente pode resetá-la aqui:
+            entry.target.style.transform = 'translateX(0)';
+            // Desconecta o observer para evitar toggles posteriores
+            observer.disconnect();
+          }
         });
       },
       { threshold },
     );
+
     observer.observe(element);
   };
 
@@ -140,7 +151,11 @@ function setupScrollAnimation(selector, threshold = 0.4) {
       observer.disconnect();
       observer = null;
     }
-    element.classList.remove('cards-servicos--active');
+    // Se ainda não foi ativado, reseta o estado do elemento.
+    if (!activated) {
+      element.classList.remove('anime--active');
+      element.style.transform = 'translateX(0)';
+    }
   };
 
   // Controle de redimensionamento com debounce
@@ -148,21 +163,25 @@ function setupScrollAnimation(selector, threshold = 0.4) {
   const handleResize = () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-      isWideViewport() ? initAnimation() : destroyAnimation();
+      if (responsive) {
+        isWideViewport() ? initAnimation() : destroyAnimation();
+      } else {
+        initAnimation();
+      }
     }, 100);
   };
 
-  // Inicialização e listeners
   window.addEventListener('resize', handleResize);
   handleResize(); // Verifica na carga inicial
 
-  // Cleanup opcional se precisar destruir em algum momento
+  // Retorna uma função de cleanup, se for necessário destruir o observer futuramente
   return () => {
     destroyAnimation();
     window.removeEventListener('resize', handleResize);
   };
 }
-const cleanupScrollAnimation = setupScrollAnimation('.cards-servicos');
+setupScrollAnimation('.cards-servicos');
+setupScrollAnimation('#comparativo', 0.4, false);
 
 // Uso
 setupScrollAnimation('.cards-servicos');

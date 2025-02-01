@@ -114,7 +114,7 @@
   }
 
   /* Animação só quando o container pai tiver a classe active */
-  .cards-servicos--active .cards-servicos-items {
+  .anime--active .cards-servicos-items {
     animation: scroll 22s linear infinite;
   }
 
