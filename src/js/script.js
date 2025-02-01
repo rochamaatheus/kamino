@@ -107,7 +107,6 @@ const inicializarAnimacoesScroll = () => {
 };
 inicializarAnimacoesScroll();
 
-// Animação de Carrossel
 function setupScrollAnimation(selector, threshold = 0.4) {
   const element = document.querySelector(selector);
 
@@ -116,21 +115,54 @@ function setupScrollAnimation(selector, threshold = 0.4) {
     return;
   }
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('cards-servicos--active');
-        } else {
-          entry.target.classList.remove('cards-servicos--active');
-        }
-      });
-    },
-    { threshold },
-  );
+  let observer = null;
+  let isWideViewport = () => window.innerWidth > 768;
 
-  observer.observe(element);
+  const initAnimation = () => {
+    if (!isWideViewport() || observer) return;
+
+    observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle(
+            'cards-servicos--active',
+            entry.isIntersecting,
+          );
+        });
+      },
+      { threshold },
+    );
+    observer.observe(element);
+  };
+
+  const destroyAnimation = () => {
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+    element.classList.remove('cards-servicos--active');
+  };
+
+  // Controle de redimensionamento com debounce
+  let resizeTimeout;
+  const handleResize = () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      isWideViewport() ? initAnimation() : destroyAnimation();
+    }, 100);
+  };
+
+  // Inicialização e listeners
+  window.addEventListener('resize', handleResize);
+  handleResize(); // Verifica na carga inicial
+
+  // Cleanup opcional se precisar destruir em algum momento
+  return () => {
+    destroyAnimation();
+    window.removeEventListener('resize', handleResize);
+  };
 }
+const cleanupScrollAnimation = setupScrollAnimation('.cards-servicos');
 
 // Uso
 setupScrollAnimation('.cards-servicos');
