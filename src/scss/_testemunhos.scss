@@ -4,6 +4,7 @@
 @use 'sass:color';
 
 .testemunhos {
+  top: 1px;
   background: linear-gradient(
     140deg,
     color.adjust($azul-medio, $lightness: -8%) 40%,

@@ -449,58 +449,100 @@
     </section>
 
     <!-- CONTATO -->
-    <section id="contato" class="contato fade-in">
-      <div class="container contato-wrapper">
-        <div class="contato-info">
-          <h2>Entre em Contato</h2>
-          <p>
-            Fale conosco! Envie sua mensagem para que possamos entender suas
-            necessidades e indicar a melhor solução para o seu negócio.
+    <section class="contact-section fade-in" id="contato">
+      <div class="container contact-container">
+        <div class="contact-content">
+          <h2 class="section-title">Fale Conosco</h2>
+          <p class="contact-description">
+            Tire suas dúvidas ou solicite um orçamento. Nossa equipe entrará em
+            contato dentro de 24 horas para oferecer a solução ideal para seu
+            negócio.
           </p>
-        </div>
-        <form id="contactForm">
-          <h3>Formulário de Contato</h3>
-          <div class="error" id="formError">
-            Preencha todos os campos obrigatórios!
+          <div class="contact-details">
+            <div class="detail-item">
+              <i>📞</i>
+              <p>(11) 99999-9999</p>
+            </div>
+            <div class="detail-item">
+              <i>✉</i>
+              <p>contato@empresa.com</p>
+            </div>
           </div>
-          <label for="nome">Nome *</label>
-          <input type="text" id="nome" placeholder="Digite seu Nome" required />
-          <label for="email">E-mail *</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Digite seu E-mail"
-            required
-          />
-          <label for="telefone">Telefone *</label>
-          <input
-            type="text"
-            id="telefone"
-            placeholder="Digite seu número de celular"
-            required
-          />
-          <label for="base_investimento">Base de Investimento *</label>
-          <select id="base_investimento" required>
-            <option value="">Selecione</option>
-            <option>de R$1.500,00 a R$3.000,00 (Mínimo)</option>
-            <option>de R$3.000,00 a R$5.000,00</option>
-            <option>mais de R$5.000,00</option>
-          </select>
-          <label for="base_funcionarios">Base de Funcionários *</label>
-          <select id="base_funcionarios" required>
-            <option value="">Selecione</option>
-            <option>Trabalho sozinho</option>
-            <option>Pequena Equipe (2-5)</option>
-            <option>Equipe maior (6+)</option>
-          </select>
-          <label for="mensagem">Mensagem *</label>
-          <textarea
-            id="mensagem"
-            rows="4"
-            placeholder="Descreva sua necessidade"
-            required
-          ></textarea>
-          <button type="submit">Enviar</button>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <h3 class="form-title">Formulário de Contato</h3>
+          <div class="form-alert error" id="formError">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Preencha todos os campos obrigatórios!</span>
+          </div>
+
+          <div class="form-group">
+            <label for="nome">Nome Completo *</label>
+            <input
+              type="text"
+              id="nome"
+              class="form-input"
+              placeholder="Ex: João da Silva"
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="seuemail@exemplo.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone *</label>
+              <input
+                type="tel"
+                id="telefone"
+                class="form-input"
+                placeholder="(11) 99999-9999"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="base_investimento">Investimento Mensal *</label>
+              <select id="base_investimento" class="form-select">
+                <option value="">Selecione</option>
+                <option>R$1.500,00 a R$3.000,00</option>
+                <option>R$3.000,00 a R$5.000,00</option>
+                <option>Acima de R$5.000,00</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="base_funcionarios">Tamanho da Equipe *</label>
+              <select id="base_funcionarios" class="form-select">
+                <option value="">Selecione</option>
+                <option>Trabalho individual</option>
+                <option>Pequena equipe (2-5)</option>
+                <option>Equipe maior (6+)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="mensagem">Mensagem *</label>
+            <textarea
+              id="mensagem"
+              class="form-textarea"
+              rows="5"
+              placeholder="Descreva sua necessidade..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-button">
+            <span>Enviar Mensagem</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
         </form>
       </div>
     </section>
