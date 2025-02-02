@@ -217,6 +217,77 @@
     }
   }
 
+  // Animação
+  .rotating-tags {
+    display: inline-block;
+    position: relative;
+    height: 2.8rem;
+    overflow: hidden;
+    font-size: 1.25rem;
+  }
+
+  .rotating-wrapper {
+    display: flex;
+    flex-direction: column;
+    animation: rotateServices 10s infinite;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  .rotating-item {
+    padding: 0.25rem 1rem;
+    background: rgba(#fff, 0.1);
+    border-radius: 50px;
+    margin: 0.3rem 0;
+    width: max-content;
+    position: relative;
+    transform-origin: left center;
+    animation: itemEntrance 0.6s ease-out backwards;
+
+    &:nth-child(odd) {
+      background: linear-gradient(
+        90deg,
+        rgba($azul-claro, 0.3) 0%,
+        rgba(#fff, 0.1) 100%
+      );
+    }
+  }
+
+  @keyframes rotateServices {
+    0%,
+    20% {
+      transform: translateY(0);
+    }
+    25%,
+    45% {
+      transform: translateY(-25%);
+    }
+    50%,
+    70% {
+      transform: translateY(-50%);
+    }
+    75%,
+    95% {
+      transform: translateY(-75%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes itemEntrance {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
   // Responsividade
   @media (max-width: 1200px) {
     .hero-content h1 {
