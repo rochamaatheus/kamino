@@ -30,6 +30,18 @@
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1rem; // Adicionado padding para evitar colapso com bordas
+
+    // Media Query para tablets
+    @media (max-width: 768px) {
+      gap: 1.5rem;
+      padding: 0;
+    }
+
+    // Media Query para mobile
+    @media (max-width: 480px) {
+      gap: 1rem;
+    }
   }
 
   .card-fase {
@@ -38,21 +50,46 @@
     border-radius: 12px;
     flex: 1 1 250px;
     max-width: 280px;
+    min-width: 250px; // Evita que os cards fiquem muito pequenos
     padding: 2rem;
     text-align: center;
     transition: transform $transition-default, box-shadow $transition-default;
     position: relative;
     overflow: hidden;
 
+    // Ajustes para telas médias
+    @media (max-width: 768px) {
+      flex: 1 1 200px;
+      max-width: 300px;
+      padding: 1.5rem;
+    }
+
+    // Ajustes para mobile
+    @media (max-width: 480px) {
+      flex: 1 1 100%;
+      max-width: 100%;
+      padding: 1rem;
+    }
+
     &:hover {
       transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 20px rgb(0 0 0 / 0.15);
+
+      // Remove hover em dispositivos touch
+      @media (hover: none) {
+        transform: none;
+        box-shadow: none;
+      }
     }
 
     .card-icon {
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
       color: $azul-medio;
+
+      @media (max-width: 480px) {
+        font-size: 2rem;
+      }
     }
 
     h3 {
@@ -60,12 +97,20 @@
       color: $azul-medio;
       font-size: 1.3rem;
       font-weight: 700;
+
+      @media (max-width: 480px) {
+        font-size: 1.1rem;
+      }
     }
 
     p {
       font-size: 1rem;
       color: #555;
       line-height: 1.6;
+
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+      }
     }
 
     &::before {

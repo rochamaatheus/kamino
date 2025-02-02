@@ -1069,6 +1069,18 @@ section h2 {
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
+}
+@media (max-width: 768px) {
+  .fases .container-fases {
+    gap: 1.5rem;
+    padding: 0;
+  }
+}
+@media (max-width: 480px) {
+  .fases .container-fases {
+    gap: 1rem;
+  }
 }
 .fases .card-fase {
   background-color: #fff;
@@ -1076,20 +1088,46 @@ section h2 {
   border-radius: 12px;
   flex: 1 1 250px;
   max-width: 280px;
+  min-width: 250px;
   padding: 2rem;
   text-align: center;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
 }
+@media (max-width: 768px) {
+  .fases .card-fase {
+    flex: 1 1 200px;
+    max-width: 300px;
+    padding: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .fases .card-fase {
+    flex: 1 1 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+}
 .fases .card-fase:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+@media (hover: none) {
+  .fases .card-fase:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 .fases .card-fase .card-icon {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   color: #0a7aa6;
+}
+@media (max-width: 480px) {
+  .fases .card-fase .card-icon {
+    font-size: 2rem;
+  }
 }
 .fases .card-fase h3 {
   margin-bottom: 1rem;
@@ -1097,10 +1135,20 @@ section h2 {
   font-size: 1.3rem;
   font-weight: 700;
 }
+@media (max-width: 480px) {
+  .fases .card-fase h3 {
+    font-size: 1.1rem;
+  }
+}
 .fases .card-fase p {
   font-size: 1rem;
   color: #555;
   line-height: 1.6;
+}
+@media (max-width: 480px) {
+  .fases .card-fase p {
+    font-size: 0.9rem;
+  }
 }
 .fases .card-fase::before {
   content: "";

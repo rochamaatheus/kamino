@@ -85,8 +85,12 @@ const inicializarDropdown = () => {
 };
 inicializarDropdown();
 
-// Animação de scroll (Intersection Observer)
 const inicializarAnimacoesScroll = () => {
+  let isWideViewport = () => window.innerWidth > 768;
+
+  // Define o threshold dinamicamente com base no tamanho da tela
+  const getThreshold = () => (isWideViewport() ? 0.4 : 0.1);
+
   const observer = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach(entry => {
@@ -99,7 +103,7 @@ const inicializarAnimacoesScroll = () => {
         }
       });
     },
-    { threshold: 0.4 }, // Ajuste o threshold conforme necessário
+    { threshold: getThreshold() }, // Corrigido: threshold é uma propriedade do objeto de opções
   );
 
   // Observa todos os elementos com a classe .fade-in
@@ -107,9 +111,14 @@ const inicializarAnimacoesScroll = () => {
 };
 inicializarAnimacoesScroll();
 
+// Adiciona um listener para redimensionamento da tela
+window.addEventListener('resize', () => {
+  inicializarAnimacoesScroll();
+});
+
 // Anima ao aparecer com reset de translateX e controle de responsividade.
 // Uma vez ativado, a animação não é desativada mesmo se o elemento sair da viewport.
-function setupScrollAnimation(selector, threshold = 0.4, responsive = true) {
+function setupScrollAnimation(selector, responsive = true) {
   const element = document.querySelector(selector);
 
   if (!element) {
@@ -118,29 +127,27 @@ function setupScrollAnimation(selector, threshold = 0.4, responsive = true) {
   }
 
   let observer = null;
-  let activated = false; // Flag que indica se a animação já foi ativada
+  let activated = false;
   let isWideViewport = () => window.innerWidth > 768;
 
+  // Define o threshold dinamicamente com base no tamanho da tela
+  const getThreshold = () => (isWideViewport() ? 0.4 : 0.1);
+
   const initAnimation = () => {
-    // Se for responsivo e a viewport não for larga, não inicializa
-    // Ou se o observer já foi criado (ou já ativado), sai
     if ((responsive && !isWideViewport()) || observer) return;
 
     observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          // Se o elemento está visível e ainda não foi ativado, ativa a animação
           if (entry.isIntersecting && !activated) {
             activated = true;
-            entry.target.classList.add('anime--active');
-            // Se houver alguma transformação inline, opcionalmente pode resetá-la aqui:
             entry.target.style.transform = 'translateX(0)';
-            // Desconecta o observer para evitar toggles posteriores
+            entry.target.classList.add('anime--active');
             observer.disconnect();
           }
         });
       },
-      { threshold },
+      { threshold: getThreshold() }, // Usa o threshold dinâmico
     );
 
     observer.observe(element);
@@ -151,20 +158,21 @@ function setupScrollAnimation(selector, threshold = 0.4, responsive = true) {
       observer.disconnect();
       observer = null;
     }
-    // Se ainda não foi ativado, reseta o estado do elemento.
-    if (!activated) {
-      element.classList.remove('anime--active');
-      element.style.transform = 'translateX(0)';
-    }
+    element.classList.remove('anime--active');
+    element.style.transform = 'translateX(0)';
+    activated = false;
   };
 
-  // Controle de redimensionamento com debounce
   let resizeTimeout;
   const handleResize = () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       if (responsive) {
-        isWideViewport() ? initAnimation() : destroyAnimation();
+        if (isWideViewport()) {
+          initAnimation();
+        } else {
+          destroyAnimation();
+        }
       } else {
         initAnimation();
       }
@@ -172,17 +180,16 @@ function setupScrollAnimation(selector, threshold = 0.4, responsive = true) {
   };
 
   window.addEventListener('resize', handleResize);
-  handleResize(); // Verifica na carga inicial
+  handleResize();
 
-  // Retorna uma função de cleanup, se for necessário destruir o observer futuramente
   return () => {
     destroyAnimation();
     window.removeEventListener('resize', handleResize);
   };
 }
 setupScrollAnimation('.cards-servicos');
-setupScrollAnimation('#comparativo', 0.4, false);
-setupScrollAnimation('#metodologia', 0.4, false);
+setupScrollAnimation('#comparativo', false);
+setupScrollAnimation('#metodologia', false);
 
 // Define o offset para os marcadores (caso seja utilizado no CSS)
 document.documentElement.style.setProperty('--circle-offset', '25px');
