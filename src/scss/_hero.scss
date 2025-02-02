@@ -6,8 +6,8 @@
 .hero {
   background: linear-gradient(
     145deg,
-    color.mix($azul-escuro, #000000, 95%) 0%,
-    $azul-medio 100%
+    color.mix($azul-medio, #000000, 95%) 0%,
+    $azul-escuro 100%
   );
   color: #fff;
   position: relative;

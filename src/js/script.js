@@ -220,7 +220,6 @@ const updateTimeline = () => {
     topic.classList.toggle('active', fillHeight >= markerCenter);
   });
 };
-
 // Atualiza a timeline nos eventos de scroll e resize
 ['scroll', 'resize'].forEach(event =>
   window.addEventListener(event, updateTimeline),

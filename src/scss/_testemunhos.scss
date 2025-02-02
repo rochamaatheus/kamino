@@ -1,61 +1,297 @@
 @use './variables' as *;
+@use 'sass:string';
+@use 'sass:meta';
+@use 'sass:color';
 
 .testemunhos {
-  background: linear-gradient(140deg, $azul-medio 40%, $azul-claro 100%);
-  color: #fff;
-  text-align: center;
+  background: linear-gradient(
+    140deg,
+    color.adjust($azul-medio, $lightness: -8%) 40%,
+    color.adjust($azul-escuro, $saturation: 20%) 100%
+  );
+  color: $branco-fundo;
+  padding: 4rem 1rem;
+  position: relative;
+  overflow: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+
+  &__container {
+    display: grid;
+    justify-items: center;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    padding: 1rem;
+    will-change: transform;
+    min-height: 1px;
+  }
+
+  &.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    will-change: opacity, transform;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23#{string.slice(meta.inspect(rgba($azul-claro, 0.05)), 5)}" /></svg>');
+    opacity: 0.15;
+  }
 
   h2 {
-    color: #fff;
-  }
-}
+    color: $branco-fundo;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 800;
+    padding: 0 1rem;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backface-visibility: hidden;
 
-.testemunhos-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  max-width: 1000px;
-  margin: 0 auto;
+    &::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, $azul-claro 0%, transparent 100%);
+      margin: 1rem auto 0;
+    }
+  }
 }
 
 .testemunho-card {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba($branco-fundo, 0.08);
   padding: 1.5rem;
-  border-radius: 8px;
-  max-width: 300px;
-  transition: transform $transition-default;
-  text-align: left;
+  border-radius: 16px;
+  border: 1px solid rgba($branco-fundo, 0.15);
+  backdrop-filter: blur(12px);
+  transition: all $transition-default;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transform: translateZ(0);
 
-  &:hover {
-    transform: translateY(-3px);
+  @supports not (backdrop-filter: blur(12px)) {
+    background: rgba($branco-fundo, 0.15);
   }
-}
 
-.testemunho-top {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    backface-visibility: hidden;
+  }
 
-  img {
+  &__img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-right: 0.8rem;
-    object-fit: cover;
+    margin-right: 0;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    transform: translateZ(0);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      backface-visibility: hidden;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid rgba($azul-claro, 0.5);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba($azul-claro, 0.2);
+    }
+  }
+
+  &__info {
+    text-align: left;
+  }
+
+  &__nome {
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, $branco-fundo 0%, $azul-claro 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    backface-visibility: hidden;
+  }
+
+  &__cargo {
+    font-size: 0.85rem;
+    color: rgba($branco-fundo, 0.8);
+    font-weight: 300;
+  }
+
+  &__texto {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.6;
+    color: rgba($branco-fundo, 0.9);
+    position: relative;
+    padding-left: 1.5rem;
+    backface-visibility: hidden;
+
+    &::before {
+      content: '“';
+      position: absolute;
+      left: -0.5rem;
+      top: -0.8rem;
+      font-size: 3rem;
+      font-family: serif;
+      color: rgba($azul-claro, 0.5);
+      font-weight: 700;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+
+    .testemunho-card__img img {
+      transform: scale(1.1) rotate(2deg);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba($azul-claro, 0.1) 60%,
+      transparent 80%
+    );
+    animation: shineOverlay 15s infinite linear paused;
+    opacity: 0.3;
+  }
+
+  &:hover::before {
+    animation-play-state: running;
   }
 }
 
-.testemunho-nome {
-  font-weight: 700;
+@media (min-width: 480px) {
+  .testemunho-card {
+    &__top {
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    &__img {
+      width: 55px;
+      height: 55px;
+      margin-right: 1rem;
+    }
+  }
 }
 
-.testemunho-cargo {
-  font-size: 0.85rem;
-  color: #ddd;
+@media (min-width: 768px) {
+  .testemunhos {
+    padding: 6rem 2rem;
+
+    &__container {
+      gap: 2.5rem;
+      padding: 2rem;
+    }
+
+    h2 {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .testemunho-card {
+    padding: 2rem;
+
+    &__texto {
+      padding-left: 2rem;
+      line-height: 1.7;
+
+      &::before {
+        left: -1rem;
+        top: -1.2rem;
+        font-size: 4rem;
+      }
+    }
+
+    &__img {
+      width: 60px;
+      height: 60px;
+      margin-right: 1.5rem;
+    }
+  }
 }
 
-.testemunho-texto {
-  font-size: 0.95rem;
-  line-height: 1.4;
+@media (min-width: 992px) {
+  .testemunhos {
+    &__container {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+    }
+  }
+
+  .testemunho-card {
+    &:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .testemunhos::before {
+    animation: float 20s linear infinite;
+  }
+
+  .testemunho-card::before {
+    animation-play-state: running;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes shineOverlay {
+  0% {
+    transform: rotate(0deg) translateX(-50%);
+  }
+  100% {
+    transform: rotate(360deg) translateX(50%);
+  }
 }
