@@ -351,13 +351,15 @@
 
 @keyframes fade-in {
   from {
+    visibility: hidden;
     opacity: 0;
   }
   to {
+    visibility: visible;
     opacity: 1;
   }
 }
 
-.fade-in {
+.fade-in .show {
   animation: fade-in 1s ease forwards;
 }

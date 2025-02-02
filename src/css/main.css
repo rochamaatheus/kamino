@@ -1569,14 +1569,12 @@ section h2 {
   }
 }
 .testemunhos {
-  top: 1px;
   background: linear-gradient(140deg, rgb(7.6818181818, 93.7181818182, 127.5181818182) 40%, rgb(1.9, 44.8194805195, 99.1) 100%);
   color: #f2f2f2;
   padding: 4rem 1rem;
   position: relative;
   overflow: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  visibility: hidden;
 }
 .testemunhos__container {
   display: grid;
@@ -1592,8 +1590,11 @@ section h2 {
 .testemunhos.fade-in {
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards;
   will-change: opacity, transform;
+}
+.testemunhos.show {
+  animation: fadeInUp 0.8s ease forwards;
+  visibility: visible;
 }
 .testemunhos::before {
   content: "";
@@ -2146,13 +2147,15 @@ section h2 {
 }
 @keyframes fade-in {
   from {
+    visibility: hidden;
     opacity: 0;
   }
   to {
+    visibility: visible;
     opacity: 1;
   }
 }
-.fade-in {
+.fade-in .show {
   animation: fade-in 1s ease forwards;
 }
 
