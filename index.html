@@ -1,16 +1,134 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <!-- Configurações Básicas -->
     <meta charset="UTF-8" />
-    <title>Minha Agência de Marketing Digital - Versão Melhorada</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Fonte Google (exemplo) -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
     />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Primary Meta Tags -->
+    <title>
+      Kamino Agência de Marketing Digital | Especialistas em Tráfego Pago
+    </title>
+    <meta
+      name="description"
+      content="Agência de Marketing Digital com metodologia própria para gestão de tráfego pago e alta conversão. Aumente suas vendas com Google Ads e Meta Ads + Landing Pages otimizadas"
+    />
+    <meta name="author" content="Kamino Agência" />
+    <link rel="canonical" href="https://www.suaagencia.com.br" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Kamino Agência" />
+    <meta
+      property="og:title"
+      content="Kamino | Marketing Digital de Alta Performance"
+    />
+    <meta
+      property="og:description"
+      content="Soluções completas em Google Ads e Meta Ads com acompanhamento diário via IA. Confira nossos casos de sucesso!"
+    />
+    <meta property="og:url" content="https://www.suaagencia.com.br" />
+    <meta
+      property="og:image"
+      content="https://www.suaagencia.com.br/img/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Equipe Kamino analisando dados de marketing digital"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@kaminoagencia" />
+    <meta
+      name="twitter:title"
+      content="Kamino | Resultados em Marketing Digital"
+    />
+    <meta
+      name="twitter:description"
+      content="Gestão profissional de campanhas digitais com relatórios em tempo real e otimização contínua"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.suaagencia.com.br/img/twitter-card.jpg"
+    />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Kamino Agência de Marketing Digital",
+        "url": "https://www.suaagencia.com.br",
+        "logo": "https://www.suaagencia.com.br/img/logo.png",
+        "image": "https://www.suaagencia.com.br/img/office.jpg",
+        "priceRange": "R$1500 - R$15000",
+        "telephone": "+5511999999999",
+        "email": "contato@suaagencia.com.br",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Paulista, 1000",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "postalCode": "01310-100",
+          "addressCountry": "BR"
+        },
+        "sameAs": [
+          "https://www.facebook.com/kaminoagencia",
+          "https://www.instagram.com/kaminoagencia",
+          "https://br.linkedin.com/company/kaminoagencia"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "bestRating": "5",
+          "ratingCount": "87"
+        }
+      }
+    </script>
+
+    <!-- Pré-carregamento de Recursos Críticos -->
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com"
+      as="font"
+      crossorigin
+    />
+    <link rel="preload" href="./src/css/main.css" as="style" />
+    <link rel="preload" href="./src/js/script.js" as="script" />
+
+    <!-- Fontes Otimizadas -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+    />
+
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="./src/css/main.css" />
+
+    <!-- Favicon e Ícones Modernos -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Segurança e Headers Adicionais -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https: 'unsafe-inline' 'unsafe-eval';"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
   </head>
 
   <link rel="stylesheet" href="./src/css/main.css" />
