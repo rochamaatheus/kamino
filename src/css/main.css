@@ -1575,6 +1575,7 @@ section h2 {
   position: relative;
   overflow: hidden;
   visibility: hidden;
+  top: 2px;
 }
 .testemunhos__container {
   display: grid;
