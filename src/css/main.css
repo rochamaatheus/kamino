@@ -717,7 +717,7 @@ section h2 {
   animation: fadeInUp 0.8s ease 0.6s forwards;
 }
 .sobre .conteudo-estruturado .texto-destaque {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #0c2e59;
   line-height: 1.8;
   padding-right: 2rem;
@@ -1566,6 +1566,9 @@ section h2 {
   }
   .topic h3::before {
     display: none;
+  }
+  ol {
+    list-style: none;
   }
 }
 .testemunhos {

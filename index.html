@@ -134,8 +134,6 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
   </head>
-
-  <link rel="stylesheet" href="./src/css/main.css" />
   <body>
     <!-- HEADER -->
     <header class="header-bg" aria-label="Cabeçalho principal">
@@ -224,9 +222,9 @@
     </div>
 
     <!-- HERO -->
-    <section class="hero fade-in" aria-labelledby="hero-heading">
+    <section class="hero fade-in" aria-label="Título Principal">
       <div class="container hero-content-wrapper">
-        <div class="hero-content">
+        <header class="hero-content">
           <div class="rotating-tags" aria-live="polite">
             <div class="rotating-wrapper">
               <span class="rotating-item">Google ADS</span>
@@ -248,7 +246,7 @@
           >
             Quero Aumentar Minhas Vendas
           </button>
-        </div>
+        </header>
         <div class="hero-image">
           <img
             src="./src/img/imagem.avif"
@@ -264,38 +262,38 @@
     <!-- SOBRE -->
     <section id="sobre" class="sobre fade-in" aria-label="Sobre nossa empresa">
       <div class="container">
-        <h2>Nossa Jornada Digital</h2>
+        <header>
+          <h2>Nossa Jornada Digital</h2>
+          <p class="destaque-principal">
+            Transformamos desafios complexos em soluções digitais elegantes,
+            combinando tecnologia de ponta com estratégias comprovadas.
+          </p>
+        </header>
 
-        <div class="destaque-principal">
-          Transformamos desafios complexos em soluções digitais elegantes,
-          combinando tecnologia de ponta com estratégias comprovadas.
-        </div>
-
-        <div class="conteudo-estruturado fade-in">
-          <div class="texto-destaque">
-            <p>
-              Fundada em <strong>2024</strong>, nossa agência surgiu da
-              necessidade de unir criatividade e análise de dados. Ao longo dos
-              anos, desenvolvemos uma metodologia única que combina:
-            </p>
-          </div>
+        <article class="conteudo-estruturado fade-in">
+          <p>
+            Fundada em <strong>2024</strong>, nossa agência surgiu da
+            necessidade de unir criatividade e análise de dados. Ao longo dos
+            anos, desenvolvemos uma metodologia única que combina:
+          </p>
 
           <ul class="lista-caracteristicas fade-in">
             <li>
-              <div class="icone">▹</div>
-              <span>Pesquisa de mercado aprofundada</span>
+              <span class="icone">▹</span>
+              Pesquisa de mercado aprofundada
             </li>
             <li>
-              <div class="icone">▹</div>
-              <span>Tecnologia de última geração</span>
+              <span class="icone">▹</span>
+              Tecnologia de última geração
             </li>
             <li>
-              <div class="icone">▹</div>
-              <span>Análise de dados em tempo real</span>
+              <span class="icone">▹</span>
+              Análise de dados em tempo real
             </li>
           </ul>
-        </div>
-        <div class="pilares-container-sobre fade-in">
+        </article>
+
+        <aside class="pilares-container-sobre fade-in">
           <h3 class="subtitulo-pilares">Nossos Pilares:</h3>
           <ul class="lista-pilares">
             <li>
@@ -315,276 +313,514 @@
               Landing Pages de alta conversão
             </li>
           </ul>
-        </div>
+        </aside>
       </div>
     </section>
 
     <!-- SERVIÇOS PRINCIPAIS -->
-    <section class="fade-in servicos" id="servicos">
+    <section
+      id="servicos"
+      class="servicos fade-in"
+      aria-label="Nossas Soluções Integradas"
+    >
       <div class="separador-efeito"></div>
+      <h2 id="servicos-heading">Nossas Soluções Integradas</h2>
 
-      <!-- Título da Seção -->
-      <h2>O que Fazemos</h2>
-
-      <!-- Destaque Principal -->
       <div class="destaque-principal">
         Transformamos suas ideias em campanhas digitais eficazes e de alto
         impacto, garantindo resultados consistentes e crescimento sustentável
         para o seu negócio.
       </div>
 
-      <!-- Separador Estilizado -->
       <div class="separador-estilizado"></div>
 
-      <!-- Container dos Serviços -->
       <div class="pilares-container">
-        <!-- Cards de Serviços -->
         <div class="cards-servicos">
           <div class="cards-servicos-items">
-            <div class="card-servico">
-              <h3>Criação de Contas</h3>
-              <p>
+            <!-- Card 1 - Tráfego Pago -->
+            <article
+              class="card-servico"
+              itemscope
+              itemtype="https://schema.org/Service"
+            >
+              <div class="servico-icon" aria-hidden="true">🚀</div>
+              <h3 itemprop="name">Gestão de Tráfego Pago</h3>
+              <p itemprop="description">
                 Configuramos todas as contas de anúncios necessárias (Facebook,
                 Google, etc.) para alavancar suas campanhas.
               </p>
-            </div>
-            <div class="card-servico">
-              <h3>Monitoramento Diário</h3>
-              <p>
+              <meta itemprop="serviceType" content="Marketing Digital" />
+            </article>
+
+            <!-- Card 2 - Monitoramento -->
+            <article
+              class="card-servico"
+              itemscope
+              itemtype="https://schema.org/Service"
+            >
+              <div class="servico-icon" aria-hidden="true">👁️</div>
+              <h3 itemprop="name">Monitoramento Diário</h3>
+              <p itemprop="description">
                 Acompanhamos KPIs das campanhas e fazemos ajustes constantes
                 para otimizar resultados e reduzir custos.
               </p>
-            </div>
-            <div class="card-servico">
-              <h3>Relatórios Semanais</h3>
-              <p>
+              <meta itemprop="serviceType" content="Análise de Dados" />
+            </article>
+
+            <!-- Card 3 - Relatórios -->
+            <article
+              class="card-servico"
+              itemscope
+              itemtype="https://schema.org/Service"
+            >
+              <div class="servico-icon" aria-hidden="true">📊</div>
+              <h3 itemprop="name">Relatórios Semanais</h3>
+              <p itemprop="description">
                 Fornecemos insights e dados de desempenho em relatórios claros e
                 objetivos para tomada de decisões.
               </p>
-            </div>
-            <div class="card-servico">
-              <h3>Criação de LPs</h3>
-              <p>
+              <meta itemprop="serviceType" content="Business Intelligence" />
+            </article>
+
+            <!-- Card 4 - Landing Pages -->
+            <article
+              class="card-servico"
+              itemscope
+              itemtype="https://schema.org/Service"
+            >
+              <div class="servico-icon" aria-hidden="true">🖥️</div>
+              <h3 itemprop="name">Criação de Landing Pages</h3>
+              <p itemprop="description">
                 Desenvolvemos Landing Pages otimizadas para alta conversão e
                 captação de leads qualificados.
               </p>
-            </div>
-            <div class="card-servico">
-              <h3>Reuniões de Estratégia</h3>
-              <p>
+              <meta itemprop="serviceType" content="Desenvolvimento Web" />
+            </article>
+
+            <!-- Card 5 - Estratégia -->
+            <article
+              class="card-servico"
+              itemscope
+              itemtype="https://schema.org/Service"
+            >
+              <div class="servico-icon" aria-hidden="true">🧠</div>
+              <h3 itemprop="name">Reuniões de Estratégia</h3>
+              <p itemprop="description">
                 Realizamos encontros periódicos para discutir resultados,
                 alinhar táticas e planejar próximos passos.
               </p>
-            </div>
-            <div class="card-servico">
-              <h3>Dash em Tempo Real</h3>
-              <p>
+              <meta itemprop="serviceType" content="Consultoria" />
+            </article>
+
+            <!-- Card 6 - Dashboard -->
+            <article
+              class="card-servico"
+              itemscope
+              itemtype="https://schema.org/Service"
+            >
+              <div class="servico-icon" aria-hidden="true">📱</div>
+              <h3 itemprop="name">Dash em Tempo Real</h3>
+              <p itemprop="description">
                 Acesse um painel de controle em tempo real para monitorar
                 indicadores de performance 24/7.
               </p>
-            </div>
+              <meta itemprop="serviceType" content="Tecnologia" />
+            </article>
           </div>
         </div>
       </div>
-
-      <!-- Botão de CTA -->
-      <a
-        class="reveal-on-scroll destaque-link underline-grow from-right"
-        href="#contato"
-        >Quero todos os serviços!</a
-      >
     </section>
 
     <!-- FASES / ETAPAS DO PROCESSO -->
-    <section class="fade-in fases" id="fases">
-      <h2>Nossa Abordagem em 4 Fases</h2>
-      <div class="container-fases">
-        <div class="card-fase">
-          <div class="card-icon">📊</div>
-          <h3>1. Mapeamento / Diagnóstico</h3>
-          <p>
-            Analisamos suas redes, mapeamos o mercado e entendemos as
-            necessidades para definir objetivos e estratégias iniciais.
+    <section
+      class="fade-in fases"
+      id="fases"
+      itemscope
+      itemtype="https://schema.org/HowTo"
+      aria-label="Metodologia de 4 Fases para Marketing Digital de Alta Performance"
+    >
+      <h2 itemprop="name" id="fases-heading">
+        Metodologia de 4 Fases para Marketing Digital de Alta Performance
+      </h2>
+
+      <meta
+        itemprop="description"
+        content="Processo completo desde análise inicial até relatórios finais com métricas-chave"
+      />
+      <meta itemprop="totalTime" content="P30D" />
+      <link itemprop="image" href="https://exemplo.com/img/fases.jpg" />
+
+      <div class="container-fases" role="list">
+        <!-- Fase 1 -->
+        <div
+          class="card-fase"
+          role="listitem"
+          itemprop="step"
+          itemscope
+          itemtype="https://schema.org/HowToStep"
+        >
+          <div class="card-icon" aria-hidden="true">📊</div>
+          <h3 itemprop="name">1. Mapeamento e Diagnóstico de Mercado</h3>
+          <p itemprop="text">
+            Análise completa das redes sociais, benchmark de concorrência e
+            identificação de oportunidades para definição de objetivos SMART.
           </p>
+          <meta itemprop="tool" content="Google Analytics, SEMrush" />
+          <meta itemprop="supply" content="Briefing Estratégico" />
+          <meta itemprop="timeRequired" content="P7D" />
         </div>
-        <div class="card-fase">
-          <div class="card-icon">📈</div>
-          <h3>2. Estratégia / Planejamento</h3>
-          <p>
-            Criamos um plano de tráfego pago personalizado para trazer mais
-            leads e vendas com base em metas claras.
+
+        <!-- Fase 2 -->
+        <div
+          class="card-fase"
+          role="listitem"
+          itemprop="step"
+          itemscope
+          itemtype="https://schema.org/HowToStep"
+        >
+          <div class="card-icon" aria-hidden="true">📈</div>
+          <h3 itemprop="name">2. Planejamento Estratégico de Tráfego</h3>
+          <p itemprop="text">
+            Desenvolvimento de plano de mídia personalizado com definição de
+            personas, cronograma de campanhas e projeção de ROI.
           </p>
+          <meta itemprop="tool" content="Meta Business Suite, Google Ads" />
+          <meta itemprop="supply" content="Plano de Mídia" />
+          <meta itemprop="timeRequired" content="P5D" />
         </div>
-        <div class="card-fase">
-          <div class="card-icon">⚙️</div>
-          <h3>3. Otimização / Gerenciamento</h3>
-          <p>
-            Acompanhamos de perto as campanhas, fazendo ajustes para maximizar
-            ROI e potencializar resultados continuamente.
+
+        <!-- Fase 3 -->
+        <div
+          class="card-fase"
+          role="listitem"
+          itemprop="step"
+          itemscope
+          itemtype="https://schema.org/HowToStep"
+        >
+          <div class="card-icon" aria-hidden="true">⚙️</div>
+          <h3 itemprop="name">3. Otimização Contínua de Campanhas</h3>
+          <p itemprop="text">
+            Monitoramento diário com ajustes em tempo real para maximização de
+            resultados através de machine learning e análise preditiva.
           </p>
+          <meta itemprop="tool" content="Google Optimize, Hotjar" />
+          <meta itemprop="supply" content="Relatório de Performance" />
+          <meta itemprop="timeRequired" content="P15D" />
         </div>
-        <div class="card-fase">
-          <div class="card-icon">📑</div>
-          <h3>4. Relatório / Acompanhamento</h3>
-          <p>
-            Apresentamos relatórios frequentes com métricas-chave e próximos
-            passos para escalonar suas estratégias.
+
+        <!-- Fase 4 -->
+        <div
+          class="card-fase"
+          role="listitem"
+          itemprop="step"
+          itemscope
+          itemtype="https://schema.org/HowToStep"
+        >
+          <div class="card-icon" aria-hidden="true">📑</div>
+          <h3 itemprop="name">4. Análise e Relatórios Estratégicos</h3>
+          <p itemprop="text">
+            Apresentação de relatórios detalhados com KPI's essenciais e plano
+            de ação para escalonamento das estratégias digitais.
           </p>
+          <meta itemprop="tool" content="Google Data Studio, Tableau" />
+          <meta itemprop="supply" content="Dashboard Interativo" />
+          <meta itemprop="timeRequired" content="P3D" />
+        </div>
+      </div>
+
+      <!-- Dados Estruturados Adicionais -->
+      <div hidden>
+        <div itemprop="supply" itemscope itemtype="https://schema.org/Service">
+          <meta itemprop="serviceType" content="Marketing Digital" />
+          <meta itemprop="provider" content="Kamino" />
+        </div>
+        <div
+          itemprop="estimatedCost"
+          itemscope
+          itemtype="https://schema.org/MonetaryAmount"
+        >
+          <meta itemprop="currency" content="BRL" />
+          <meta itemprop="value" content="5000" />
         </div>
       </div>
     </section>
 
     <!-- COMPARATIVO 7 PROFISSIONAIS -->
-    <section class="comparativo fade-in" id="comparativo">
-      <h2>7 Profissionais Pelo Preço de 1</h2>
-      <p class="subtitulo">
-        Pare de sofrer tentando fazer anúncios sozinho: tenha uma equipe
-        especializada à sua disposição, pagando apenas por 1 time integrado!
+    <section
+      class="comparativo fade-in"
+      id="comparativo"
+      itemscope
+      itemtype="https://schema.org/AggregateOffer"
+      aria-label="COMPARATIVO 7 PROFISSIONAIS"
+    >
+      <h2 itemprop="name">
+        7 Profissionais de Marketing Digital pelo Preço de 1
+      </h2>
+
+      <p class="subtitulo" role="doc-subtitle" itemprop="description">
+        Pare de perder tempo e dinheiro tentando gerenciar anúncios sozinho:
+        tenha uma equipe especializada completa à sua disposição por menos de
+        30% do custo tradicional!
       </p>
-      <div class="cards-profissionais">
-        <div class="card-profissional">
-          <div class="card-icon">📱</div>
-          <h3>Social Media</h3>
-          <p>Preço médio mensal: <span class="preco">R$ 2.000,00</span></p>
+
+      <div class="cards-profissionais" role="list">
+        <!-- Social Media -->
+        <div
+          class="card-profissional"
+          role="listitem"
+          itemscope
+          itemtype="https://schema.org/PriceSpecification"
+        >
+          <div class="card-icon" aria-hidden="true">📱</div>
+          <h3 itemprop="name">Social Media</h3>
+          <p>
+            Preço médio mensal:
+            <span class="preco" itemprop="price" content="2000">
+              R$ <span itemprop="priceCurrency" content="BRL">2.000,00</span>
+            </span>
+          </p>
+          <meta itemprop="valueAddedTaxIncluded" content="false" />
+          <link itemprop="eligibleRegion" href="https://schema.org/BR" />
         </div>
-        <div class="card-profissional">
-          <div class="card-icon">🚀</div>
-          <h3>Gestor de Tráfego</h3>
-          <p>Preço médio mensal: <span class="preco">R$ 3.500,00</span></p>
+
+        <!-- Gestor de Tráfego -->
+        <div
+          class="card-profissional"
+          role="listitem"
+          itemscope
+          itemtype="https://schema.org/PriceSpecification"
+        >
+          <div class="card-icon" aria-hidden="true">🚀</div>
+          <h3 itemprop="name">Gestor de Tráfego Pago</h3>
+          <p>
+            Preço médio mensal:
+            <span class="preco" itemprop="price" content="3500">
+              R$ <span itemprop="priceCurrency" content="BRL">3.500,00</span>
+            </span>
+          </p>
+          <meta itemprop="priceValidUntil" content="2025-12-31" />
+          <link itemprop="eligibleRegion" href="https://schema.org/BR" />
         </div>
-        <div class="card-profissional">
-          <div class="card-icon">🎨</div>
-          <h3>Designer</h3>
-          <p>Preço médio mensal: <span class="preco">R$ 3.500,00</span></p>
+
+        <!-- Designer -->
+        <div
+          class="card-profissional"
+          role="listitem"
+          itemscope
+          itemtype="https://schema.org/PriceSpecification"
+        >
+          <div class="card-icon" aria-hidden="true">🎨</div>
+          <h3 itemprop="name">Designer Gráfico Digital</h3>
+          <p>
+            Preço médio mensal:
+            <span class="preco" itemprop="price" content="3500">
+              R$ <span itemprop="priceCurrency" content="BRL">3.500,00</span>
+            </span>
+          </p>
+          <meta itemprop="valueAddedTaxIncluded" content="false" />
         </div>
-        <div class="card-profissional">
-          <div class="card-icon">✍️</div>
-          <h3>Copywriter</h3>
-          <p>Preço médio mensal: <span class="preco">R$ 3.000,00</span></p>
+
+        <!-- Copywriter -->
+        <div
+          class="card-profissional"
+          role="listitem"
+          itemscope
+          itemtype="https://schema.org/PriceSpecification"
+        >
+          <div class="card-icon" aria-hidden="true">✍️</div>
+          <h3 itemprop="name">Redator Publicitário</h3>
+          <p>
+            Preço médio mensal:
+            <span class="preco" itemprop="price" content="3000">
+              R$ <span itemprop="priceCurrency" content="BRL">3.000,00</span>
+            </span>
+          </p>
+          <meta itemprop="priceValidUntil" content="2025-12-31" />
         </div>
-        <div class="card-profissional">
-          <div class="card-icon">💻</div>
-          <h3>Programador</h3>
-          <p>Preço médio mensal: <span class="preco">R$ 4.500,00</span></p>
+
+        <!-- Programador -->
+        <div
+          class="card-profissional"
+          role="listitem"
+          itemscope
+          itemtype="https://schema.org/PriceSpecification"
+        >
+          <div class="card-icon" aria-hidden="true">💻</div>
+          <h3 itemprop="name">Desenvolvedor Web</h3>
+          <p>
+            Preço médio mensal:
+            <span class="preco" itemprop="price" content="4500">
+              R$ <span itemprop="priceCurrency" content="BRL">4.500,00</span>
+            </span>
+          </p>
+          <link itemprop="eligibleRegion" href="https://schema.org/BR" />
         </div>
-        <div class="card-profissional">
-          <div class="card-icon">🌐</div>
-          <h3>Web Design</h3>
-          <p>Mínimo de <span class="preco">R$ 2.800,00</span></p>
+
+        <!-- Web Design -->
+        <div
+          class="card-profissional"
+          role="listitem"
+          itemscope
+          itemtype="https://schema.org/PriceSpecification"
+        >
+          <div class="card-icon" aria-hidden="true">🌐</div>
+          <h3 itemprop="name">Web Designer</h3>
+          <p>
+            Mínimo de
+            <span class="preco" itemprop="price" content="2800">
+              R$ <span itemprop="priceCurrency" content="BRL">2.800,00</span>
+            </span>
+          </p>
+          <meta itemprop="valueAddedTaxIncluded" content="false" />
         </div>
       </div>
-      <div class="destaque-total">
-        <p>
-          Você gastaria mais de <strong>R$ 15 mil/mês</strong> para manter um
-          time completo.
+
+      <div class="destaque-total" role="region" aria-label="Economia Total">
+        <p
+          itemprop="priceSpecification"
+          itemscope
+          itemtype="https://schema.org/AggregateOffer"
+        >
+          Você gastaria mais de
+          <strong itemprop="highPrice" content="18300">R$ 18.300/mês</strong>
+          <meta itemprop="priceCurrency" content="BRL" />
+          para manter um time completo.
         </p>
-        <p>
+
+        <p itemprop="offers" itemscope itemtype="https://schema.org/Offer">
           Conosco, você tem
-          <strong>tudo isso pelo preço de apenas um funcionário!</strong>
+          <strong itemprop="price" content="5900"
+            >tudo por
+            <span itemprop="priceCurrency" content="BRL">R$ 5.900/mês</span>
+          </strong>
+          <meta itemprop="priceValidUntil" content="2025-12-31" />
+          <link itemprop="availability" href="https://schema.org/InStock" />
         </p>
       </div>
     </section>
 
-    <!-- METODOLOGIA (Exemplo MIND) -->
-    <section class="fade-in metodologia" id="metodologia">
-      <h2>Metodologia Própria - MIND</h2>
+    <!-- METODOLOGIA -->
+    <section
+      class="fade-in metodologia"
+      id="metodologia"
+      aria-label="Metodologia"
+    >
+      <header>
+        <h2>Metodologia Própria - MIND</h2>
+      </header>
       <div class="container-metodologia">
-        <div class="grafico-circular"></div>
+        <div class="grafico-circular" aria-hidden="true"></div>
         <div class="desc-metodologia">
-          <div class="vertical-line"></div>
-          <div class="topic">
-            <div class="marker"></div>
-            <h3>Mapeamento</h3>
-            <p>
-              Identificamos objetivos claros e definimos o plano estratégico
-              inicial.
-            </p>
-          </div>
-          <div class="topic">
-            <div class="marker"></div>
-            <h3>Implementação</h3>
-            <p>
-              Executamos as atividades planejadas, ajustando estrutura de
-              anúncios e criativos.
-            </p>
-          </div>
-          <div class="topic">
-            <div class="marker"></div>
-            <h3>Navegação</h3>
-            <p>
-              Monitoramos continuamente resultados, buscando otimizações de
-              performance.
-            </p>
-          </div>
-          <div class="topic">
-            <div class="marker"></div>
-            <h3>Divulgação</h3>
-            <p>
-              Compartilhamos relatórios, analisamos feedback e realinhamos
-              estratégias para a próxima etapa. Equipe formada pela mentoria
-              Subido Pro, referência em formação de profissionais de marketing
-              digital.
-            </p>
-          </div>
+          <!-- Elemento decorativo -->
+          <div class="vertical-line" aria-hidden="true"></div>
+          <!-- Utilizando lista ordenada para as etapas -->
+          <ol>
+            <li class="topic">
+              <!-- Elemento decorativo -->
+              <div class="marker" aria-hidden="true"></div>
+              <h3>Mapeamento</h3>
+              <p>
+                Identificamos objetivos claros e definimos o plano estratégico
+                inicial.
+              </p>
+            </li>
+            <li class="topic">
+              <div class="marker" aria-hidden="true"></div>
+              <h3>Implementação</h3>
+              <p>
+                Executamos as atividades planejadas, ajustando estrutura de
+                anúncios e criativos.
+              </p>
+            </li>
+            <li class="topic">
+              <div class="marker" aria-hidden="true"></div>
+              <h3>Navegação</h3>
+              <p>
+                Monitoramos continuamente resultados, buscando otimizações de
+                performance.
+              </p>
+            </li>
+            <li class="topic">
+              <div class="marker" aria-hidden="true"></div>
+              <h3>Divulgação</h3>
+              <p>
+                Compartilhamos relatórios, analisamos feedback e realinhamos
+                estratégias para a próxima etapa. Equipe formada pela mentoria
+                Subido Pro, referência em formação de profissionais de marketing
+                digital.
+              </p>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
 
     <!-- TESTEMUNHOS -->
-    <section class="testemunhos fade-in" id="testemunhos">
-      <h2>O que dizem nossos clientes</h2>
-
+    <section
+      class="testemunhos fade-in"
+      id="testemunhos"
+      aria-label="Testemunhos"
+    >
+      <header>
+        <h2>O que dizem nossos clientes</h2>
+      </header>
       <div class="testemunhos__container">
         <!-- Card 1 -->
-        <div class="testemunho-card">
-          <div class="testemunho-card__top">
-            <div class="testemunho-card__img">
-              <img src="./src/img/imagem.avif" alt="Foto João Silva" />
-            </div>
+        <article class="testemunho-card">
+          <header class="testemunho-card__top">
+            <figure class="testemunho-card__img">
+              <img src="./src/img/imagem.avif" alt="Foto de João Silva" />
+            </figure>
             <div class="testemunho-card__info">
-              <div class="testemunho-card__nome">João Silva</div>
-              <div class="testemunho-card__cargo">Empreendedor</div>
+              <h3 class="testemunho-card__nome">João Silva</h3>
+              <p class="testemunho-card__cargo">Empreendedor</p>
             </div>
-          </div>
-          <div class="testemunho-card__texto">
-            “Minha Agência me ajudou a dobrar meus leads em apenas 3 meses. O
-            acompanhamento semanal faz toda a diferença!”
-          </div>
-        </div>
+          </header>
+          <blockquote class="testemunho-card__texto">
+            <p>
+              “Minha Agência me ajudou a dobrar meus leads em apenas 3 meses. O
+              acompanhamento semanal faz toda a diferença!”
+            </p>
+          </blockquote>
+        </article>
 
         <!-- Card 2 -->
-        <div class="testemunho-card">
-          <div class="testemunho-card__top">
-            <div class="testemunho-card__img">
-              <img src="./src/img/imagem.avif" alt="Foto Mariana Costa" />
-            </div>
+        <article class="testemunho-card">
+          <header class="testemunho-card__top">
+            <figure class="testemunho-card__img">
+              <img src="./src/img/imagem.avif" alt="Foto de Mariana Costa" />
+            </figure>
             <div class="testemunho-card__info">
-              <div class="testemunho-card__nome">Mariana Costa</div>
-              <div class="testemunho-card__cargo">Coach</div>
+              <h3 class="testemunho-card__nome">Mariana Costa</h3>
+              <p class="testemunho-card__cargo">Coach</p>
             </div>
-          </div>
-          <div class="testemunho-card__texto">
-            “Nunca tinha tido tanto suporte em Marketing Digital. O time é super
-            profissional e transparente nos resultados.”
-          </div>
-        </div>
+          </header>
+          <blockquote class="testemunho-card__texto">
+            <p>
+              “Nunca tinha tido tanto suporte em Marketing Digital. O time é
+              super profissional e transparente nos resultados.”
+            </p>
+          </blockquote>
+        </article>
 
         <!-- Card 3 -->
-        <div class="testemunho-card">
-          <div class="testemunho-card__top">
-            <div class="testemunho-card__img">
-              <img src="./src/img/imagem.avif" alt="Foto Carlos Eduardo" />
-            </div>
+        <article class="testemunho-card">
+          <header class="testemunho-card__top">
+            <figure class="testemunho-card__img">
+              <img src="./src/img/imagem.avif" alt="Foto de Carlos Eduardo" />
+            </figure>
             <div class="testemunho-card__info">
-              <div class="testemunho-card__nome">Carlos Eduardo</div>
-              <div class="testemunho-card__cargo">Loja Virtual</div>
+              <h3 class="testemunho-card__nome">Carlos Eduardo</h3>
+              <p class="testemunho-card__cargo">Loja Virtual</p>
             </div>
-          </div>
-          <div class="testemunho-card__texto">
-            “Me impressionou a qualidade do trabalho, principalmente as Landing
-            Pages e a análise de dados. Recomendo muito!”
-          </div>
-        </div>
+          </header>
+          <blockquote class="testemunho-card__texto">
+            <p>
+              “Me impressionou a qualidade do trabalho, principalmente as
+              Landing Pages e a análise de dados. Recomendo muito!”
+            </p>
+          </blockquote>
+        </article>
       </div>
     </section>
 
@@ -592,66 +828,90 @@
     <section class="contact-section fade-in" id="contato">
       <div class="container contact-container">
         <div class="contact-content">
-          <h2 class="section-title">Fale Conosco</h2>
-          <p class="contact-description">
-            Tire suas dúvidas ou solicite um orçamento. Nossa equipe entrará em
-            contato dentro de 24 horas para oferecer a solução ideal para seu
-            negócio.
-          </p>
-          <div class="contact-details">
+          <header>
+            <h2 class="section-title">Fale Conosco</h2>
+            <p class="contact-description">
+              Tire suas dúvidas ou solicite um orçamento. Nossa equipe entrará
+              em contato dentro de 24 horas para oferecer a solução ideal para
+              seu negócio.
+            </p>
+          </header>
+
+          <!-- Usando <address> para agrupar informações de contato -->
+          <address class="contact-details">
             <div class="detail-item">
-              <i>📞</i>
-              <p>(11) 99999-9999</p>
+              <span class="icon" aria-hidden="true">📞</span>
+              <a href="tel:+5511999999999">(11) 99999-9999</a>
             </div>
             <div class="detail-item">
-              <i>✉</i>
-              <p>contato@empresa.com</p>
+              <span class="icon" aria-hidden="true">✉</span>
+              <a href="mailto:contato@empresa.com">contato@empresa.com</a>
             </div>
-          </div>
+          </address>
         </div>
 
-        <form class="contact-form" id="contactForm">
-          <h3 class="form-title">Formulário de Contato</h3>
-          <div class="form-alert error" id="formError">
-            <i class="fas fa-exclamation-circle"></i>
+        <form class="contact-form" id="contactForm" novalidate>
+          <header>
+            <h3 class="form-title">Formulário de Contato</h3>
+          </header>
+
+          <!-- Mensagem de erro, com role e aria-live para acessibilidade -->
+          <div
+            class="form-alert error"
+            id="formError"
+            role="alert"
+            aria-live="assertive"
+          >
+            <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
             <span>Preencha todos os campos obrigatórios!</span>
           </div>
 
           <div class="form-group">
-            <label for="nome">Nome Completo *</label>
+            <label for="nome"
+              >Nome Completo <span aria-hidden="true">*</span></label
+            >
             <input
               type="text"
               id="nome"
               class="form-input"
               placeholder="Ex: João da Silva"
+              required
             />
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="email">E-mail *</label>
+              <label for="email"
+                >E-mail <span aria-hidden="true">*</span></label
+              >
               <input
                 type="email"
                 id="email"
                 class="form-input"
                 placeholder="seuemail@exemplo.com"
+                required
               />
             </div>
             <div class="form-group">
-              <label for="telefone">Telefone *</label>
+              <label for="telefone"
+                >Telefone <span aria-hidden="true">*</span></label
+              >
               <input
                 type="tel"
                 id="telefone"
                 class="form-input"
                 placeholder="(11) 99999-9999"
+                required
               />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="base_investimento">Investimento Mensal *</label>
-              <select id="base_investimento" class="form-select">
+              <label for="base_investimento"
+                >Investimento Mensal <span aria-hidden="true">*</span></label
+              >
+              <select id="base_investimento" class="form-select" required>
                 <option value="">Selecione</option>
                 <option>R$1.500,00 a R$3.000,00</option>
                 <option>R$3.000,00 a R$5.000,00</option>
@@ -659,8 +919,10 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="base_funcionarios">Tamanho da Equipe *</label>
-              <select id="base_funcionarios" class="form-select">
+              <label for="base_funcionarios"
+                >Tamanho da Equipe <span aria-hidden="true">*</span></label
+              >
+              <select id="base_funcionarios" class="form-select" required>
                 <option value="">Selecione</option>
                 <option>Trabalho individual</option>
                 <option>Pequena equipe (2-5)</option>
@@ -670,18 +932,20 @@
           </div>
 
           <div class="form-group">
-            <label for="mensagem">Mensagem *</label>
+            <label for="mensagem"
+              >Mensagem <span aria-hidden="true">*</span></label
+            >
             <textarea
               id="mensagem"
               class="form-textarea"
               rows="5"
               placeholder="Descreva sua necessidade..."
+              required
             ></textarea>
           </div>
 
           <button type="submit" class="submit-button">
             <span>Enviar Mensagem</span>
-            <i class="fas fa-paper-plane"></i>
           </button>
         </form>
       </div>
