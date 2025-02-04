@@ -1,178 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <!-- Configurações Básicas -->
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
-    />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Minha Agência de Marketing Digital - Versão Melhorada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Primary Meta Tags -->
-    <title>
-      Kamino Agência de Marketing Digital | Especialistas em Tráfego Pago
-    </title>
-    <meta
-      name="description"
-      content="Agência de Marketing Digital com metodologia própria para gestão de tráfego pago e alta conversão. Aumente suas vendas com Google Ads e Meta Ads + Landing Pages otimizadas"
-    />
-    <meta name="author" content="Kamino Agência" />
-    <link rel="canonical" href="https://www.suaagencia.com.br" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:site_name" content="Kamino Agência" />
-    <meta
-      property="og:title"
-      content="Kamino | Marketing Digital de Alta Performance"
-    />
-    <meta
-      property="og:description"
-      content="Soluções completas em Google Ads e Meta Ads com acompanhamento diário via IA. Confira nossos casos de sucesso!"
-    />
-    <meta property="og:url" content="https://www.suaagencia.com.br" />
-    <!-- <meta
-      property="og:image"
-      content="https://www.suaagencia.com.br/img/og-image.jpg"
-    /> -->
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Equipe Kamino analisando dados de marketing digital"
-    />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@kaminoagencia" />
-    <meta
-      name="twitter:title"
-      content="Kamino | Resultados em Marketing Digital"
-    />
-    <meta
-      name="twitter:description"
-      content="Gestão profissional de campanhas digitais com relatórios em tempo real e otimização contínua"
-    />
-    <!-- <meta
-      name="twitter:image"
-      content="https://www.suaagencia.com.br/img/twitter-card.jpg"
-    /> -->
-
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Kamino Agência de Marketing Digital",
-        "url": "https://www.suaagencia.com.br",
-        "logo": "https://www.suaagencia.com.br/img/logo.png",
-        "image": "https://www.suaagencia.com.br/img/office.jpg",
-        "priceRange": "R$1500 - R$15000",
-        "telephone": "+5511999999999",
-        "email": "contato@suaagencia.com.br",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Av. Paulista, 1000",
-          "addressLocality": "São Paulo",
-          "addressRegion": "SP",
-          "postalCode": "01310-100",
-          "addressCountry": "BR"
-        },
-        "sameAs": [
-          "https://www.facebook.com/kaminoagencia",
-          "https://www.instagram.com/kaminoagencia",
-          "https://br.linkedin.com/company/kaminoagencia"
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "bestRating": "5",
-          "ratingCount": "87"
-        }
-      }
-    </script>
-
-    <!-- Pré-carregamento de Recursos Críticos -->
-    <!-- <link
-      rel="preload"
-      href="https://fonts.gstatic.com"
-      as="font"
-      crossorigin
-    /> -->
-    <link rel="preload" href="./src/css/main.css" as="style" />
-    <link rel="preload" href="./src/js/script.js" as="script" />
-
-    <!-- Fontes Otimizadas -->
+    <!-- Fonte Google (exemplo) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
     />
-
-    <!-- CSS Principal -->
-    <link rel="stylesheet" href="./src/css/main.css" />
-
-    <!-- Favicon e Ícones Modernos -->
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-    <meta name="msapplication-TileColor" content="#2d89ef" />
-    <meta name="theme-color" content="#ffffff" /> -->
-
-    <!-- Segurança e Headers Adicionais -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'
-    https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'
-    https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; font-src
-    'self' https: data:; connect-src 'self' https:; object-src 'none'; base-uri
-    'self'; form-action 'self';"
-    />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
   </head>
 
   <link rel="stylesheet" href="./src/css/main.css" />
   <body>
     <!-- HEADER -->
-    <header class="header-bg" aria-label="Cabeçalho principal">
-      <div class="container header">
-        <a href="/" class="logo" aria-label="Kamino - Home">
-          <span aria-hidden="true">Kamino</span>
-        </a>
-
-        <div
-          class="menu-toggle"
-          id="menu-toggle"
-          aria-expanded="false"
-          aria-controls="main-nav"
-          aria-label="Alternar navegação"
-        >
-          <span class="hamburger" aria-hidden="true"></span>
+    <header class="header-bg">
+      <div class="header container">
+        <a href="/" class="logo">Kamino</a>
+        <div class="menu-toggle" id="menu-toggle">
+          <span></span>
         </div>
-
-        <nav class="nav-menu" id="main-nav" aria-label="Navegação principal">
-          <ul role="list">
+        <nav class="nav-menu" id="nav-menu">
+          <ul>
             <li>
-              <a
-                id="dropdown-toggle"
-                href="#servicos"
-                class="underline-grow"
-                aria-current="page"
+              <a id="dropdown-toggle" class="underline-grow" href="#servicos"
                 >Serviços</a
               >
             </li>
-            <li><a href="#fases" class="underline-grow">Fases</a></li>
+            <li><a class="underline-grow" href="#fases">Fases</a></li>
             <li>
-              <a href="#comparativo" class="underline-grow">Comparativo</a>
+              <a class="underline-grow" href="#comparativo">Comparativo</a>
             </li>
             <li>
-              <a href="#metodologia" class="underline-grow">Metodologia</a>
+              <a class="underline-grow" href="#metodologia">Metodologia</a>
             </li>
-            <li><a href="#contato" class="underline-grow">Contato</a></li>
+            <li><a class="underline-grow" href="#contato">Contato</a></li>
           </ul>
         </nav>
       </div>
@@ -223,11 +87,11 @@
       </nav>
     </div>
 
-    <!-- HERO -->
-    <section class="hero fade-in" aria-labelledby="hero-heading">
+    <!-- HERO SECTION -->
+    <section class="hero fade-in">
       <div class="container hero-content-wrapper">
         <div class="hero-content">
-          <div class="rotating-tags" aria-live="polite">
+          <div class="rotating-tags">
             <div class="rotating-wrapper">
               <span class="rotating-item">Google ADS</span>
               <span class="rotating-item">Tráfego Pago</span>
@@ -235,27 +99,23 @@
               <span class="rotating-item">Social Media</span>
             </div>
           </div>
-          <h1 id="hero-heading">
-            Marketing Digital que <span class="highlight">Gera Resultados</span>
-          </h1>
-          <p class="hero-subtitle">
-            Aumente suas vendas com estratégias baseadas em dados e otimização
-            contínua
+          <h1>Marketing Digital de Alta Performance</h1>
+          <p>
+            Nascemos com o propósito de guiar nossos clientes pelos melhores
+            caminhos para alcançar o sucesso em suas estratégias. Venha conhecer
+            nossa metodologia própria e nossa equipe altamente qualificada!
           </p>
           <button
-            class="cta-button"
             onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
           >
-            Quero Aumentar Minhas Vendas
+            Fale Conosco
           </button>
         </div>
         <div class="hero-image">
           <img
             src="./src/img/imagem.avif"
-            alt="Dashboard de análise de dados de marketing"
+            alt="Equipe trabalhando em estratégias de marketing digital"
             loading="lazy"
-            width="1200"
-            height="800"
           />
         </div>
       </div>
