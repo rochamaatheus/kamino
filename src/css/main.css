@@ -87,6 +87,28 @@ section h2 {
   position: relative;
 }
 
+.destaque-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0f9fbf;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.destaque-link::after {
+  content: "→";
+  transition: transform 0.3s ease;
+}
+.destaque-link:hover {
+  transform: translateY(-2px);
+}
+.destaque-link:hover::after {
+  transform: translateX(5px);
+}
+
 .header-bg {
   background: linear-gradient(145deg, rgb(11.4, 43.7, 84.55) 0%, #0c2e59 100%);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -149,11 +171,6 @@ section h2 {
   }
 }
 
-:root {
-  --dropdown-height: 400px;
-  --dropdown-border-radius: 20px;
-}
-
 .dropdown-content {
   display: grid;
   position: absolute;
@@ -168,28 +185,27 @@ section h2 {
   z-index: 9;
   grid-template-columns: 300px 1fr;
   gap: 2rem;
-  min-height: var(--dropdown-height);
-  border-radius: 0 0 var(--dropdown-border-radius) var(--dropdown-border-radius);
+  min-height: 400px;
+  border-radius: 0 0 20px 20px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(15, 159, 191, 0.1);
 }
 .dropdown-content.active {
-  pointer-events: initial;
+  pointer-events: auto;
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(10px);
 }
 
 .dropdown-header {
-  position: relative;
   padding-right: 2rem;
   border-right: 1px solid rgba(15, 159, 191, 0.2);
 }
 .dropdown-header h2 {
+  text-align: left;
   font-size: 2rem;
   color: #f2f2f2;
   margin-bottom: 1.5rem;
@@ -236,22 +252,17 @@ section h2 {
   padding-bottom: 10px;
   width: max-content;
 }
-.services::before, .services::after {
-  content: "";
-  flex: 0 0 1px;
-  height: 1px;
-}
 
 .service-card {
-  position: relative;
+  flex: 0 0 300px;
   border-radius: 12px;
   overflow: hidden;
+  position: relative;
   transform-style: preserve-3d;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
   background: linear-gradient(45deg, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
   scroll-snap-align: start;
-  flex: 0 0 300px;
 }
 .service-card:hover {
   transform: translateY(-5px) rotateX(5deg) rotateY(-2deg);
@@ -287,7 +298,6 @@ section h2 {
   font-weight: 700;
   color: #f2f2f2;
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .subtitulo {
@@ -295,28 +305,6 @@ section h2 {
   color: rgba(242, 242, 242, 0.8);
   display: block;
   margin-bottom: 1rem;
-}
-
-.destaque-link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #0f9fbf;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.destaque-link::after {
-  content: "→";
-  transition: transform 0.3s ease;
-}
-.destaque-link:hover {
-  transform: translateY(-2px);
-}
-.destaque-link:hover::after {
-  transform: translateX(5px);
 }
 
 @media (max-width: 1200px) {
@@ -335,13 +323,8 @@ section h2 {
     top: 59px;
   }
   .dropdown-header {
-    border-right: none;
-    border-bottom: 1px solid rgba(15, 159, 191, 0.2);
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .services {
-    gap: 1rem;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
   }
   .service-card {
     flex: 0 0 280px;
@@ -359,8 +342,8 @@ section h2 {
   }
 }
 @media (max-width: 576px) {
-  :root {
-    --dropdown-height: auto;
+  .dropdown-content {
+    min-height: auto;
   }
   .service-card {
     flex: 0 0 250px;

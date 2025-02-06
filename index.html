@@ -154,7 +154,11 @@
         <nav class="nav-menu" id="main-nav" aria-label="Navegação principal">
           <ul>
             <li>
-              <a href="#servicos" class="underline-grow" aria-current="page"
+              <a
+                href="#servicos"
+                id="dropdown-toggle"
+                class="underline-grow"
+                aria-current="page"
                 >Serviços</a
               >
             </li>
@@ -171,50 +175,85 @@
       </div>
     </header>
 
-    <div class="dropdown-content" id="dropdown">
+    <!-- DROPDOWN -->
+    <section
+      class="dropdown-content"
+      id="dropdown"
+      aria-labelledby="dropdown-heading"
+      hidden
+    >
       <div class="dropdown-header">
-        <div>
+        <header>
           <h2>Conheça Nossos Serviços</h2>
           <p>Veja como podemos ajudar você a crescer!</p>
-        </div>
+        </header>
       </div>
-      <nav class="services-list">
+
+      <nav class="services-list" aria-label="Lista de serviços">
         <ul class="services">
           <li class="service-card">
-            <img src="./src/img/imagem.avif" alt="Tráfego Pago" />
+            <img
+              src="./src/img/imagem.avif"
+              alt="Ilustração de consultoria para infoprodutos"
+              loading="lazy"
+              width="400"
+              height="250"
+            />
             <div class="service-card-content">
               <h3 class="titulo-principal">CONSULTORIAS</h3>
               <span class="subtitulo">Infoprodutos e negócios locais</span>
-              <a href="#" class="destaque-link">Saiba Mais</a>
+              <a
+                href="#"
+                class="destaque-link"
+                aria-label="Saiba mais sobre Consultorias"
+              >
+                Saiba Mais
+              </a>
             </div>
           </li>
           <li class="service-card">
-            <img src="./src/img/imagem.avif" alt="Tráfego Pago" />
-            <div class="service-card-content">
-              <span class="subtitulo">Gestão de</span>
-              <h3 class="titulo-principal">TRÁFEGO PAGO</h3>
-              <a href="#" class="destaque-link">Saiba Mais</a>
-            </div>
-          </li>
-          <li class="service-card">
-            <img src="./src/img/imagem.avif" alt="Tráfego Pago" />
+            <img
+              src="./src/img/imagem.avif"
+              alt="Ilustração de consultoria para infoprodutos"
+              loading="lazy"
+              width="400"
+              height="250"
+            />
             <div class="service-card-content">
               <h3 class="titulo-principal">CONSULTORIAS</h3>
               <span class="subtitulo">Infoprodutos e negócios locais</span>
-              <a href="#" class="destaque-link">Saiba Mais</a>
+              <a
+                href="#"
+                class="destaque-link"
+                aria-label="Saiba mais sobre Consultorias"
+              >
+                Saiba Mais
+              </a>
             </div>
           </li>
           <li class="service-card">
-            <img src="./src/img/imagem.avif" alt="Tráfego Pago" />
+            <img
+              src="./src/img/imagem.avif"
+              alt="Ilustração de consultoria para infoprodutos"
+              loading="lazy"
+              width="400"
+              height="250"
+            />
             <div class="service-card-content">
-              <span class="subtitulo">Gestão de</span>
-              <h3 class="titulo-principal">TRÁFEGO PAGO</h3>
-              <a href="#" class="destaque-link">Saiba Mais</a>
+              <h3 class="titulo-principal">CONSULTORIAS</h3>
+              <span class="subtitulo">Infoprodutos e negócios locais</span>
+              <a
+                href="#"
+                class="destaque-link"
+                aria-label="Saiba mais sobre Consultorias"
+              >
+                Saiba Mais
+              </a>
             </div>
           </li>
         </ul>
       </nav>
-    </div>
+    </section>
 
     <!-- HERO -->
     <section class="hero fade-in" aria-label="Título Principal">
