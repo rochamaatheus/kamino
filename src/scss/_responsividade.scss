@@ -1,6 +1,7 @@
 @use './variables' as *;
 
 @media (max-width: 890px) {
+  /* HEADER */
   .header {
     flex-wrap: wrap;
     height: auto;
@@ -37,6 +38,9 @@
       }
     }
     .menu-toggle {
+      display: block !important;
+      background-color: transparent;
+      border: none;
       width: 40px;
       height: 40px;
       position: relative;
@@ -55,11 +59,11 @@
       &::before {
         top: 12px;
       }
-      &::after {
-        top: 24px;
-      }
       span {
-        top: 18px;
+        top: 20px;
+      }
+      &::after {
+        top: 28px;
       }
       &.active {
         &::before {

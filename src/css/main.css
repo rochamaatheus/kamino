@@ -122,6 +122,9 @@ section h2 {
   font-size: 2rem;
   transform: rotate(-45deg);
 }
+.header-bg .header .menu-toggle {
+  display: none;
+}
 .header-bg .header nav {
   color: #f2f2f2;
 }
@@ -2172,6 +2175,7 @@ footer {
 }
 
 @media (max-width: 890px) {
+  /* HEADER */
   .header {
     flex-wrap: wrap;
     height: auto;
@@ -2205,6 +2209,9 @@ footer {
     font-weight: bold;
   }
   .header .menu-toggle {
+    display: block !important;
+    background-color: transparent;
+    border: none;
     width: 40px;
     height: 40px;
     position: relative;
@@ -2223,11 +2230,11 @@ footer {
   .header .menu-toggle::before {
     top: 12px;
   }
-  .header .menu-toggle::after {
-    top: 24px;
-  }
   .header .menu-toggle span {
-    top: 18px;
+    top: 20px;
+  }
+  .header .menu-toggle::after {
+    top: 28px;
   }
   .header .menu-toggle.active::before {
     transform: rotate(45deg);
