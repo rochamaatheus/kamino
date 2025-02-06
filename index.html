@@ -102,7 +102,7 @@
       crossorigin
     /> -->
     <link rel="preload" href="./src/css/main.css" as="style" />
-    <link rel="preload" href="./src/js/script.js" as="script" />
+    <link rel="stylesheet" href="./src/css/main.css" />
 
     <!-- Fontes Otimizadas -->
     <link
@@ -125,12 +125,11 @@
     <!-- Segurança e Headers Adicionais -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'
-    https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'
-    https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; font-src
-    'self' https: data:; connect-src 'self' https:; object-src 'none'; base-uri
-    'self'; form-action 'self';"
+      content="default-src 'self' https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; font-src 'self' https: data:; connect-src 'self' https:; 
+  object-src 'none'; base-uri 'self'; form-action 'self';"
     />
+
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
   </head>
@@ -147,7 +146,7 @@
           id="menu-toggle"
           aria-expanded="false"
           aria-controls="main-nav"
-          aria-label="Alternar menu de navegação"
+          aria-label="Abrir menu"
         >
           <span class="hamburger" aria-hidden="true"></span>
         </button>
@@ -952,6 +951,10 @@
       © 2025 Minha Agência de Marketing Digital - Todos os direitos reservados.
     </footer>
 
-    <script src="./src/js/script.js"></script>
+    <script
+      type="module"
+      crossorigin="anonymous"
+      src="./src/js/script.js"
+    ></script>
   </body>
 </html>
