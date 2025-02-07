@@ -469,7 +469,7 @@ section h2 {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
   transition: all 0.4s ease;
 }
 .hero .hero-image:hover img {
@@ -631,10 +631,16 @@ section h2 {
   }
 }
 
+/* SEÇÃO: SOBRE */
 .sobre {
   background: #f2f2f2;
   padding: 6rem 0;
   position: relative;
+  /* Container centralizado */
+  /* Título principal da seção */
+  /* Destaque principal (subtítulo) */
+  /* Bloco de texto + lista de características */
+  /* Responsividade */
 }
 .sobre .container {
   max-width: 1200px;
@@ -709,15 +715,16 @@ section h2 {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.8s ease 0.6s forwards;
+  /* Texto à esquerda (opcional se quiser agrupar) */
 }
-.sobre .conteudo-estruturado .texto-destaque {
+.sobre .conteudo-estruturado p {
   font-size: 1.2rem;
   color: #0c2e59;
   line-height: 1.8;
-  padding-right: 2rem;
   border-right: 2px solid rgba(15, 159, 191, 0.1);
+  padding-right: 2rem;
 }
-.sobre .conteudo-estruturado .texto-destaque strong {
+.sobre .conteudo-estruturado p strong {
   color: #0a7aa6;
   font-weight: 600;
 }
@@ -755,12 +762,6 @@ section h2 {
   color: #f2f2f2;
   transform: rotate(15deg);
 }
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 @media (max-width: 768px) {
   .sobre {
     padding: 4rem 0;
@@ -772,14 +773,14 @@ section h2 {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .sobre .conteudo-estruturado .texto-destaque {
-    padding-right: 0;
+  .sobre .conteudo-estruturado p {
     border-right: none;
     border-bottom: 2px solid rgba(15, 159, 191, 0.1);
     padding-bottom: 2rem;
   }
 }
 
+/* ASIDE: PILARES */
 .pilares-container-sobre {
   max-width: 1200px;
   margin: 0 auto;
@@ -787,9 +788,9 @@ section h2 {
   background: #f2f2f2;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  /* Título (h3) */
 }
-
-.subtitulo-pilares {
+.pilares-container-sobre .subtitulo-pilares {
   color: #0a7aa6;
   font-size: 1.3rem;
   margin-bottom: 2rem;
@@ -799,7 +800,7 @@ section h2 {
   text-align: center;
   position: relative;
 }
-.subtitulo-pilares::after {
+.pilares-container-sobre .subtitulo-pilares::after {
   content: "";
   position: absolute;
   bottom: -0.5rem;
@@ -809,15 +810,14 @@ section h2 {
   height: 2px;
   background: rgba(15, 159, 191, 0.5);
 }
-
-.lista-pilares {
+.pilares-container-sobre .lista-pilares {
   list-style: none;
   padding: 0;
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 1fr 1fr;
 }
-.lista-pilares li {
+.pilares-container-sobre .lista-pilares li {
   padding: 1.5rem;
   background: rgba(242, 242, 242, 0.95);
   border-radius: 8px;
@@ -827,13 +827,12 @@ section h2 {
   align-items: center;
   position: relative;
 }
-.lista-pilares li:hover {
+.pilares-container-sobre .lista-pilares li:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-color: rgba(15, 159, 191, 0.3);
 }
-
-.icone-check {
+.pilares-container-sobre .lista-pilares li .icone-check {
   color: #0f9fbf;
   font-weight: 700;
   margin-right: 1rem;
@@ -841,10 +840,21 @@ section h2 {
   min-width: 25px;
   transition: transform 0.3s ease;
 }
-.icone-check:hover {
+.pilares-container-sobre .lista-pilares li .icone-check:hover {
   transform: rotate(15deg);
 }
+@media (max-width: 768px) {
+  .pilares-container-sobre .lista-pilares {
+    grid-template-columns: 1fr; /* De 2 colunas para 1 coluna em telas menores */
+  }
+}
+@media (max-width: 768px) {
+  .pilares-container-sobre {
+    padding: 1.5rem;
+  }
+}
 
+/* Texto Base (opcional, se precisar) */
 .texto-base {
   font-size: 1.1rem;
   color: #0a7aa6;
@@ -854,18 +864,11 @@ section h2 {
   text-align: center;
 }
 
-@media (max-width: 768px) {
-  h2 {
-    font-size: 2.2rem;
-  }
-  .destaque-principal {
-    font-size: 1.1rem;
-  }
-  .lista-pilares {
-    grid-template-columns: 1fr;
-  }
-  .pilares-container-sobre {
-    padding: 1.5rem;
+/* Animação fadeInUp (reutilizada) */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 .servicos {
