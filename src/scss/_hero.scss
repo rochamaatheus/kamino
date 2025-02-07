@@ -3,6 +3,7 @@
 @use 'sass:color';
 @use './variables' as *;
 
+// HERO
 .hero {
   background: linear-gradient(
     145deg,
@@ -18,6 +19,7 @@
   justify-content: center;
   padding: 4rem 0;
 
+  // Fundo animado (SVG data URI)
   &::before {
     content: '';
     position: absolute;
@@ -51,8 +53,13 @@
       margin-bottom: 2rem;
       font-weight: 800;
       line-height: 1.1;
-      background: linear-gradient(45deg, #fff 0%, $azul-claro 100%);
+      background: linear-gradient(
+        45deg,
+        #ffffff 0%,
+        color.mix(#ffffff, $azul-claro, 50%) 100%
+      );
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       opacity: 0;
@@ -64,7 +71,6 @@
       font-size: 1.2rem;
       line-height: 1.8;
       margin-bottom: 2.5rem;
-      opacity: 0.9;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.8s ease 0.4s forwards;
@@ -147,7 +153,6 @@
       img {
         transform: scale(1.05) rotate(1deg);
       }
-
       &::after {
         background: linear-gradient(
           45deg,
@@ -158,7 +163,6 @@
     }
   }
 
-  // Efeito de partículas
   &::after {
     content: '';
     position: absolute;
@@ -174,6 +178,45 @@
     border-radius: 50%;
     animation: particleMove 25s linear infinite;
     z-index: 1;
+  }
+
+  .rotating-tags {
+    position: relative;
+    height: 2.8rem;
+    overflow: hidden;
+    font-size: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .rotating-wrapper {
+    display: flex;
+    flex-direction: column;
+    animation: rotateServices 10s infinite;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  .rotating-item {
+    padding: 0.25rem 1rem;
+    background: rgba(#fff, 0.1);
+    border-radius: 50px;
+    margin: 0.3rem 0;
+    width: max-content;
+    position: relative;
+    transform-origin: left center;
+    animation: itemEntrance 0.6s ease-out backwards;
+
+    &:nth-child(odd) {
+      background: linear-gradient(
+        90deg,
+        rgba($azul-claro, 0.3) 0%,
+        rgba(#fff, 0.1) 100%
+      );
+    }
   }
 
   // Animações
@@ -217,61 +260,32 @@
     }
   }
 
-  // Animação
-  .rotating-tags {
-    display: inline-block;
-    position: relative;
-    height: 2.8rem;
-    overflow: hidden;
-    font-size: 1.25rem;
-  }
-
-  .rotating-wrapper {
-    display: flex;
-    flex-direction: column;
-    animation: rotateServices 10s infinite;
-
-    &:hover {
-      animation-play-state: paused;
-    }
-  }
-
-  .rotating-item {
-    padding: 0.25rem 1rem;
-    background: rgba(#fff, 0.1);
-    border-radius: 50px;
-    margin: 0.3rem 0;
-    width: max-content;
-    position: relative;
-    transform-origin: left center;
-    animation: itemEntrance 0.6s ease-out backwards;
-
-    &:nth-child(odd) {
-      background: linear-gradient(
-        90deg,
-        rgba($azul-claro, 0.3) 0%,
-        rgba(#fff, 0.1) 100%
-      );
-    }
-  }
-
   @keyframes rotateServices {
     0%,
-    20% {
+    16.67% {
       transform: translateY(0);
     }
-    25%,
-    45% {
-      transform: translateY(-25%);
+    20%,
+    33.33% {
+      transform: translateY(-16.67%);
     }
-    50%,
-    70% {
+    36.67%,
+    50% {
+      transform: translateY(-33.33%);
+    }
+    53.33%,
+    66.67% {
       transform: translateY(-50%);
     }
-    75%,
-    95% {
-      transform: translateY(-75%);
+    70%,
+    83.33% {
+      transform: translateY(-66.67%);
     }
+    86.67%,
+    93.33% {
+      transform: translateY(-83.33%);
+    }
+    96.67%,
     100% {
       transform: translateY(0);
     }
@@ -333,7 +347,6 @@
         font-size: 1.1rem;
       }
     }
-
     .hero-image {
       height: 40vh;
     }
