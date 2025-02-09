@@ -520,17 +520,6 @@ section h2 {
 .hero .rotating-item:nth-child(odd) {
   background: linear-gradient(90deg, rgba(15, 159, 191, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
 }
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 @keyframes fadeInUp {
   to {
     opacity: 1;
