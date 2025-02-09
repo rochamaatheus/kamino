@@ -33,5 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.style.setProperty('--circle-offset', '25px');
 
   // 8) Marquee e Botões de Nichos (com velocidade=1, por ex.)
-  initMarqueeAllNichos(1);
+  initMarqueeAllNichos(1, 48);
 });

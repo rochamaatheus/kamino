@@ -5,27 +5,24 @@ let currentSpeed = 1;
  * Classe que encapsula a lógica do marquee (rolagem infinita)
  */
 class Marquee {
-  constructor(container, speed) {
+  constructor(container, speed, extraGap = 0) {
     this.container = container;
     this.speed = speed;
+    this.extraGap = extraGap; // novo parâmetro para ajustar os gaps
     this.offset = 0;
     this.paused = false;
     this.rafId = null;
 
-    // Duplicar o conteúdo apenas uma vez para criar o efeito infinito
     if (!this.container.dataset.duplicated) {
       this.container.innerHTML += this.container.innerHTML;
       this.container.dataset.duplicated = 'true';
     }
 
-    // Calcula a largura total dos itens (incluindo o gap) do conjunto original
     this.totalWidth = this.computeTotalWidth();
 
-    // Bind dos métodos para uso nos event listeners
+    // Bind dos métodos para os event listeners
     this.handleMouseEnter = this.pause.bind(this);
     this.handleMouseLeave = this.resume.bind(this);
-
-    // Adiciona os event listeners apenas uma vez
     if (!this.container.dataset.marqueeListenersAdded) {
       this.container.addEventListener('mouseenter', this.handleMouseEnter);
       this.container.addEventListener('mouseleave', this.handleMouseLeave);
@@ -36,13 +33,8 @@ class Marquee {
     this.animate();
   }
 
-  /**
-   * Calcula a largura total dos itens originais (antes da duplicação) incluindo os gaps.
-   */
   computeTotalWidth() {
-    // Obtém os filhos do container
     const children = Array.from(this.container.children);
-    // Se já duplicamos, considera apenas a primeira metade
     const originalCount = this.container.dataset.duplicated
       ? children.length / 2
       : children.length;
@@ -54,13 +46,25 @@ class Marquee {
       totalWidth += item.getBoundingClientRect().width;
     });
 
-    // Recupera o gap do container, se definido via CSS (flex gap ou grid gap)
     const style = window.getComputedStyle(this.container);
     const gap = parseFloat(style.gap || style.columnGap || 0);
     if (originalItems.length > 1) {
       totalWidth += gap * (originalItems.length - 1);
     }
+    // Adiciona o extraGap informado, para compensar o gap que o marquee não estava considerando no reset
+    totalWidth += this.extraGap;
     return totalWidth;
+  }
+
+  animate() {
+    if (!this.paused) {
+      this.offset -= this.speed;
+      if (Math.abs(this.offset) >= this.totalWidth) {
+        this.offset += this.totalWidth;
+      }
+      this.container.style.transform = `translateX(${this.offset}px)`;
+    }
+    this.rafId = requestAnimationFrame(this.animate);
   }
 
   pause() {
@@ -69,19 +73,6 @@ class Marquee {
 
   resume() {
     this.paused = false;
-  }
-
-  animate() {
-    if (!this.paused) {
-      this.offset -= this.speed;
-      // Se o deslocamento ultrapassar a largura total, ajusta suavemente
-      if (Math.abs(this.offset) >= this.totalWidth) {
-        // Em vez de zerar, subtrai exatamente o totalWidth para manter a continuidade
-        this.offset += this.totalWidth;
-      }
-      this.container.style.transform = `translateX(${this.offset}px)`;
-    }
-    this.rafId = requestAnimationFrame(this.animate);
   }
 
   cancel() {
@@ -96,13 +87,14 @@ class Marquee {
  * Função para configurar o marquee em um container específico.
  * Se já houver uma instância, atualiza a velocidade.
  */
-function setupMarquee(container, speed) {
+function setupMarquee(container, speed, extraGap = 0) {
   if (!container) return;
   if (container._marqueeInstance) {
     container._marqueeInstance.speed = speed;
+    container._marqueeInstance.extraGap = extraGap;
     return;
   }
-  container._marqueeInstance = new Marquee(container, speed);
+  container._marqueeInstance = new Marquee(container, speed, extraGap);
 }
 
 /**
@@ -161,7 +153,7 @@ export function setupNichoButtons() {
  * Inicializa o marquee em todos os nichos (ou apenas no ativo) conforme a largura da tela.
  * Também configura a reação para o evento de resize, ativando/desativando o marquee dinamicamente.
  */
-export function initMarqueeAllNichos(speed = 1) {
+export function initMarqueeAllNichos(speed = 1, extraGap = 0) {
   currentSpeed = speed; // Salva a velocidade globalmente
 
   // Configura os botões de nicho
@@ -173,7 +165,7 @@ export function initMarqueeAllNichos(speed = 1) {
       '.cards-servicos-nicho.active .cards-servicos-items',
     );
     activeMarqueeContainers.forEach(marqueeContainer => {
-      setupMarquee(marqueeContainer, speed);
+      setupMarquee(marqueeContainer, speed, extraGap);
     });
   }
 
@@ -184,7 +176,7 @@ export function initMarqueeAllNichos(speed = 1) {
     );
     if (activeMarqueeContainer) {
       if (window.innerWidth >= 890) {
-        setupMarquee(activeMarqueeContainer, currentSpeed);
+        setupMarquee(activeMarqueeContainer, currentSpeed, extraGap);
       } else {
         if (activeMarqueeContainer._marqueeInstance) {
           activeMarqueeContainer._marqueeInstance.cancel();
