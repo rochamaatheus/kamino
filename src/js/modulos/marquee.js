@@ -1,0 +1,197 @@
+// Variável global para guardar a velocidade atual (caso queira alterar depois)
+let currentSpeed = 1;
+
+/**
+ * Classe que encapsula a lógica do marquee (rolagem infinita)
+ */
+class Marquee {
+  constructor(container, speed) {
+    this.container = container;
+    this.speed = speed;
+    this.offset = 0;
+    this.paused = false;
+    this.rafId = null;
+
+    // Duplicar o conteúdo apenas uma vez para criar o efeito infinito
+    if (!this.container.dataset.duplicated) {
+      this.container.innerHTML += this.container.innerHTML;
+      this.container.dataset.duplicated = 'true';
+    }
+
+    // Calcula a largura total dos itens (incluindo o gap) do conjunto original
+    this.totalWidth = this.computeTotalWidth();
+
+    // Bind dos métodos para uso nos event listeners
+    this.handleMouseEnter = this.pause.bind(this);
+    this.handleMouseLeave = this.resume.bind(this);
+
+    // Adiciona os event listeners apenas uma vez
+    if (!this.container.dataset.marqueeListenersAdded) {
+      this.container.addEventListener('mouseenter', this.handleMouseEnter);
+      this.container.addEventListener('mouseleave', this.handleMouseLeave);
+      this.container.dataset.marqueeListenersAdded = 'true';
+    }
+
+    this.animate = this.animate.bind(this);
+    this.animate();
+  }
+
+  /**
+   * Calcula a largura total dos itens originais (antes da duplicação) incluindo os gaps.
+   */
+  computeTotalWidth() {
+    // Obtém os filhos do container
+    const children = Array.from(this.container.children);
+    // Se já duplicamos, considera apenas a primeira metade
+    const originalCount = this.container.dataset.duplicated
+      ? children.length / 2
+      : children.length;
+    if (originalCount < 1) return 0;
+    const originalItems = children.slice(0, originalCount);
+
+    let totalWidth = 0;
+    originalItems.forEach(item => {
+      totalWidth += item.getBoundingClientRect().width;
+    });
+
+    // Recupera o gap do container, se definido via CSS (flex gap ou grid gap)
+    const style = window.getComputedStyle(this.container);
+    const gap = parseFloat(style.gap || style.columnGap || 0);
+    if (originalItems.length > 1) {
+      totalWidth += gap * (originalItems.length - 1);
+    }
+    return totalWidth;
+  }
+
+  pause() {
+    this.paused = true;
+  }
+
+  resume() {
+    this.paused = false;
+  }
+
+  animate() {
+    if (!this.paused) {
+      this.offset -= this.speed;
+      // Se o deslocamento ultrapassar a largura total, ajusta suavemente
+      if (Math.abs(this.offset) >= this.totalWidth) {
+        // Em vez de zerar, subtrai exatamente o totalWidth para manter a continuidade
+        this.offset += this.totalWidth;
+      }
+      this.container.style.transform = `translateX(${this.offset}px)`;
+    }
+    this.rafId = requestAnimationFrame(this.animate);
+  }
+
+  cancel() {
+    if (this.rafId) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
+  }
+}
+
+/**
+ * Função para configurar o marquee em um container específico.
+ * Se já houver uma instância, atualiza a velocidade.
+ */
+function setupMarquee(container, speed) {
+  if (!container) return;
+  if (container._marqueeInstance) {
+    container._marqueeInstance.speed = speed;
+    return;
+  }
+  container._marqueeInstance = new Marquee(container, speed);
+}
+
+/**
+ * Configura os botões que alternam as seções de nichos e o respectivo marquee.
+ */
+export function setupNichoButtons() {
+  const nichoButtons = document.querySelectorAll('.btn-nicho');
+  const nichoSections = document.querySelectorAll('.cards-servicos-nicho');
+
+  nichoButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove a classe .active de todos os botões e ativa o clicado
+      nichoButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Para cada seção, cancela o marquee (se existir) e remove a classe .active
+      nichoSections.forEach(section => {
+        const marqueeContainer = section.querySelector('.cards-servicos-items');
+        if (marqueeContainer && marqueeContainer._marqueeInstance) {
+          marqueeContainer._marqueeInstance.cancel();
+          marqueeContainer._marqueeInstance = null;
+        }
+        section.classList.remove('active');
+      });
+
+      // Exibe a seção correspondente ao botão clicado
+      const nicho = button.getAttribute('data-nicho');
+      const targetSection = document.getElementById(nicho);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+
+      // Se a tela tiver largura >= 890px, inicia o marquee no container da seção ativa
+      const marqueeContainer = targetSection
+        ? targetSection.querySelector('.cards-servicos-items')
+        : null;
+      if (window.innerWidth >= 890) {
+        if (marqueeContainer) {
+          setupMarquee(marqueeContainer, currentSpeed);
+        }
+      } else {
+        // Se for menor, garante que não haverá animação e reseta o transform
+        if (marqueeContainer) {
+          if (marqueeContainer._marqueeInstance) {
+            marqueeContainer._marqueeInstance.cancel();
+            marqueeContainer._marqueeInstance = null;
+          }
+          marqueeContainer.style.transform = 'none';
+        }
+      }
+    });
+  });
+}
+
+/**
+ * Inicializa o marquee em todos os nichos (ou apenas no ativo) conforme a largura da tela.
+ * Também configura a reação para o evento de resize, ativando/desativando o marquee dinamicamente.
+ */
+export function initMarqueeAllNichos(speed = 1) {
+  currentSpeed = speed; // Salva a velocidade globalmente
+
+  // Configura os botões de nicho
+  setupNichoButtons();
+
+  // Se a tela for >= 890px, inicia o marquee nos containers do nicho ativo
+  if (window.innerWidth >= 890) {
+    const activeMarqueeContainers = document.querySelectorAll(
+      '.cards-servicos-nicho.active .cards-servicos-items',
+    );
+    activeMarqueeContainers.forEach(marqueeContainer => {
+      setupMarquee(marqueeContainer, speed);
+    });
+  }
+
+  // Reage ao evento de resize para ativar/desativar o marquee conforme a largura da tela
+  window.addEventListener('resize', () => {
+    const activeMarqueeContainer = document.querySelector(
+      '.cards-servicos-nicho.active .cards-servicos-items',
+    );
+    if (activeMarqueeContainer) {
+      if (window.innerWidth >= 890) {
+        setupMarquee(activeMarqueeContainer, currentSpeed);
+      } else {
+        if (activeMarqueeContainer._marqueeInstance) {
+          activeMarqueeContainer._marqueeInstance.cancel();
+          activeMarqueeContainer._marqueeInstance = null;
+        }
+        activeMarqueeContainer.style.transform = 'none';
+      }
+    }
+  });
+}

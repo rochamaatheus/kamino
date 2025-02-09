@@ -1,35 +1,49 @@
+@use 'sass:color';
 @use 'sass:string';
 @use 'sass:meta';
-@use 'sass:color';
 @use './variables' as *;
 
 .servicos {
+  position: relative;
+  overflow: visible;
+  text-align: center;
+  padding: 3rem 0 5rem;
   background: linear-gradient(
     135deg,
     color.mix($azul-escuro, #000000, 90%),
     $azul-escuro 100%
   );
-  padding: 3rem 0 5rem;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
+  color: $branco-fundo;
 
-  &::before {
-    content: '';
+  .svg-decor {
     position: absolute;
-    top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23#{string.slice(meta.inspect(rgba($azul-claro, 0.05)), 5)}" /></svg>');
-    opacity: 0.3;
+    height: 50px;
+    z-index: 0;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .svg-top {
+    top: 0;
+    transform: rotate(180deg);
+  }
+
+  .svg-bottom {
+    bottom: 0;
+    transform: rotate(180deg);
   }
 
   .separador-efeito {
     width: 120px;
     height: 4px;
     background: linear-gradient(90deg, $azul-claro 0%, $azul-medio 100%);
-    margin: 2rem auto 2rem;
+    margin: 2rem auto;
     border-radius: 2px;
     position: relative;
 
@@ -54,13 +68,11 @@
     font-weight: 800;
     letter-spacing: -0.5px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-
-    span {
-      color: $azul-claro;
-    }
   }
 
   .destaque-principal {
+    position: relative;
+    z-index: 2;
     font-size: 1.4rem;
     line-height: 1.8;
     color: rgba($branco-fundo, 0.9);
@@ -71,7 +83,6 @@
     border-radius: 16px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba($branco-fundo, 0.15);
-    position: relative;
     overflow: hidden;
 
     &::before {
@@ -90,36 +101,80 @@
     }
   }
 
-  .cards-servicos {
-    overflow: hidden;
-    position: relative;
-    padding: 3rem 0;
-    margin: 0 auto;
-    max-width: 1200px;
+  .separador-estilizado {
+    width: 100%;
+    max-width: 300px;
+    height: 2px;
+    margin: 2rem auto;
+    background: linear-gradient(90deg, $azul-claro 0%, $azul-medio 100%);
   }
 
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-310%);
-    }
-  }
-
-  .cards-servicos-items {
+  .nicho-selector {
     display: flex;
-    gap: 3rem;
-    will-change: transform;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+
+    .btn-nicho {
+      width: 220px;
+      text-align: center;
+      color: $branco-fundo;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem;
+      background: linear-gradient(90deg, $azul-claro 0%, $azul-medio 100%);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 10px rgba($azul-claro, 0.5);
+      }
+
+      &.active {
+        transform: translateY(-3px);
+        box-shadow: 0 0 10px rgba($azul-claro, 0.7);
+      }
+    }
   }
 
-  /* Animação só quando o container pai tiver a classe active */
-  .anime--active .cards-servicos-items {
-    animation: scroll 22s linear infinite;
+  .cards-servicos-nicho {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+
+    .cards-servicos-items-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      overflow-x: hidden;
+      overflow-y: visible;
+    }
+
+    .cards-servicos-items {
+      display: inline-flex;
+      flex-direction: row;
+      white-space: nowrap;
+      gap: 3rem;
+      position: relative;
+      pointer-events: auto;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
   }
 
   .card-servico {
     flex: 0 0 360px;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     background: rgba($branco-fundo, 0.05);
     padding: 2.5rem;
     border-radius: 20px;
@@ -129,45 +184,16 @@
     overflow: hidden;
     backdrop-filter: blur(12px);
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        45deg,
-        rgba($azul-claro, 0.15) 0%,
-        transparent 100%
-      );
-      z-index: 0;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
     &:hover {
       transform: translateY(-10px) scale(1.02);
       background: rgba($branco-fundo, 0.1);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-
-      &::before {
-        opacity: 1;
-      }
-
-      .icone-servico {
-        transform: rotate(15deg) scale(1.1);
-        background: linear-gradient(135deg, $azul-claro 0%, $azul-medio 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
     }
 
-    .icone-servico {
+    .servico-icon {
       font-size: 3rem;
       margin-bottom: 2rem;
       color: $azul-claro;
-      transition: all 0.4s ease;
       display: inline-block;
     }
 
@@ -176,102 +202,41 @@
       font-size: 1.5rem;
       margin: 1.5rem 0;
       font-weight: 700;
-      position: relative;
     }
 
     p {
       color: rgba($branco-fundo, 0.8);
       font-size: 1rem;
       line-height: 1.7;
-      position: relative;
     }
   }
+}
 
-  .destaque-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    color: $branco-fundo;
-    padding: 1.2rem 2.5rem;
-    border-radius: 50px;
-    background: linear-gradient(90deg, $azul-claro 0%, $azul-medio 100%);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(white, 0.2) 50%,
-        transparent 100%
-      );
-      animation: shine 3s infinite;
-    }
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba($azul-claro, 0.3);
-      gap: 1.5rem;
-    }
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
   }
+}
 
-  // Responsividade
-  @media (max-width: 1200px) {
-    padding: 6rem 0;
-
+@media (max-width: 1200px) {
+  .servicos {
     .card-servico {
       flex: 0 0 320px;
+      max-width: 320px;
       padding: 2rem;
     }
   }
+}
 
-  @media (max-width: 768px) {
-    padding: 4rem 0;
-
-    h2 {
-      font-size: 2.5rem;
-    }
-
-    .cards-servicos-items {
-      animation: none;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 0 1.5rem;
-    }
-
+@media (max-width: 768px) {
+  .servicos {
     .card-servico {
-      flex: 0 0 90vw;
-      scroll-snap-align: start;
-      padding: 2rem;
+      flex: 0 0 280px;
+      max-width: 280px;
+      padding: 1.5rem;
     }
-
-    .destaque-link {
-      font-size: 1rem;
-      padding: 1rem 2rem;
-    }
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes shine {
-    100% {
-      left: 200%;
+    h2 {
+      font-size: 2.2rem;
     }
   }
 }

@@ -1,4 +1,3 @@
-import { duplicarCardsServicos } from './modulos/duplicarCards.js';
 import { inicializarMenuMobile } from './modulos/menuMobile.js';
 import { inicializarDropdown } from './modulos/dropdown.js';
 import { inicializarAnimacoesScroll } from './modulos/animacoesScroll.js';
@@ -6,29 +5,33 @@ import { setupScrollAnimation } from './modulos/scrollAnimation.js';
 import { initTimeline } from './modulos/timeline.js';
 import { inicializarFormulario } from './modulos/formulario.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1) Duplicar cards
-  duplicarCardsServicos();
+/* Importa as funções do marquee */
+import { initMarqueeAllNichos } from './modulos/marquee.js';
 
-  // 2) Menu Mobile
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Menu Mobile
   inicializarMenuMobile();
 
-  // 3) Dropdown (hover)
+  // 2) Dropdown (hover)
   inicializarDropdown();
 
-  // 4) Animações de scroll (ex.: .fade-in)
+  // 3) Animações gerais de scroll
   inicializarAnimacoesScroll();
 
-  // 5) Animação por IntersectionObserver em elementos específicos
-  setupScrollAnimation('.cards-servicos');
+  // 4) IntersectionObserver (ScrollAnimation)
+  setupScrollAnimation('.cards-servicos-nicho');
   setupScrollAnimation('#comparativo', false);
   setupScrollAnimation('#metodologia', false);
 
-  // 6) Timeline
+  // 5) Timeline
   initTimeline();
 
-  // 7) Formulário
+  // 6) Formulário
   inicializarFormulario();
 
+  // 7) Ajustes adicionais (exemplo)
   document.documentElement.style.setProperty('--circle-offset', '25px');
+
+  // 8) Marquee e Botões de Nichos (com velocidade=1, por ex.)
+  initMarqueeAllNichos(1);
 });
