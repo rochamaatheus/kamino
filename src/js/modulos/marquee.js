@@ -1,5 +1,6 @@
-// Variável global para guardar a velocidade atual (caso queira alterar depois)
+// Variáveis globais para guardar a velocidade e o extraGap (caso queira alterar depois)
 let currentSpeed = 1;
+let currentExtraGap = 0;
 
 /**
  * Classe que encapsula a lógica do marquee (rolagem infinita)
@@ -80,6 +81,10 @@ class Marquee {
       cancelAnimationFrame(this.rafId);
       this.rafId = null;
     }
+    // Remove os event listeners para que possam ser re-adicionados na nova instância
+    this.container.removeEventListener('mouseenter', this.handleMouseEnter);
+    this.container.removeEventListener('mouseleave', this.handleMouseLeave);
+    delete this.container.dataset.marqueeListenersAdded;
   }
 }
 
@@ -127,13 +132,14 @@ export function setupNichoButtons() {
         targetSection.classList.add('active');
       }
 
-      // Se a tela tiver largura >= 890px, inicia o marquee no container da seção ativa
+      // Seleciona o container do marquee da seção ativa
       const marqueeContainer = targetSection
         ? targetSection.querySelector('.cards-servicos-items')
         : null;
       if (window.innerWidth >= 890) {
         if (marqueeContainer) {
-          setupMarquee(marqueeContainer, currentSpeed);
+          // Usa currentSpeed e currentExtraGap para manter a referência original
+          setupMarquee(marqueeContainer, currentSpeed, currentExtraGap);
         }
       } else {
         // Se for menor, garante que não haverá animação e reseta o transform
@@ -155,6 +161,7 @@ export function setupNichoButtons() {
  */
 export function initMarqueeAllNichos(speed = 1, extraGap = 0) {
   currentSpeed = speed; // Salva a velocidade globalmente
+  currentExtraGap = extraGap; // Salva o extraGap globalmente
 
   // Configura os botões de nicho
   setupNichoButtons();
@@ -176,7 +183,7 @@ export function initMarqueeAllNichos(speed = 1, extraGap = 0) {
     );
     if (activeMarqueeContainer) {
       if (window.innerWidth >= 890) {
-        setupMarquee(activeMarqueeContainer, currentSpeed, extraGap);
+        setupMarquee(activeMarqueeContainer, currentSpeed, currentExtraGap);
       } else {
         if (activeMarqueeContainer._marqueeInstance) {
           activeMarqueeContainer._marqueeInstance.cancel();
