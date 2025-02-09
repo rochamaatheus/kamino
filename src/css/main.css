@@ -879,6 +879,16 @@ section h2 {
   background: linear-gradient(135deg, rgb(10.8, 41.4, 80.1), #0c2e59 100%);
   color: #f2f2f2;
 }
+.servicos::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23(15, 159, 191, 0.05)" /></svg>');
+  opacity: 0.15;
+}
 .servicos .svg-decor {
   position: absolute;
   left: 0;
@@ -1244,7 +1254,6 @@ section h2 {
   height: 100%;
   background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23(15, 159, 191, 0.05)" /></svg>');
   opacity: 0.15;
-  animation: float 20s linear infinite;
 }
 .comparativo h2 {
   color: #f2f2f2;

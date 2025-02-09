@@ -63,7 +63,6 @@
     height: 100%;
     background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23#{string.slice(meta.inspect(rgba($azul-claro, 0.05)), 5)}" /></svg>');
     opacity: 0.15;
-    animation: float 20s linear infinite;
   }
 
   h2 {
