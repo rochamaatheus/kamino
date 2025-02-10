@@ -3,6 +3,23 @@ let currentSpeed = 1;
 let currentExtraGap = 0;
 
 /**
+ * Função auxiliar para remover a duplicação do conteúdo do container.
+ * Se o container possui duplicação (dataset.duplicated), ele restaura o conteúdo original.
+ */
+function removeMarqueeDuplication(container) {
+  if (container.dataset.duplicated) {
+    const children = Array.from(container.children);
+    const originalCount = children.length / 2;
+    // Limpa o container e adiciona apenas a primeira metade dos itens.
+    container.innerHTML = '';
+    for (let i = 0; i < originalCount; i++) {
+      container.appendChild(children[i]);
+    }
+    delete container.dataset.duplicated;
+  }
+}
+
+/**
  * Classe que encapsula a lógica do marquee (rolagem infinita)
  */
 class Marquee {
@@ -14,6 +31,8 @@ class Marquee {
     this.paused = false;
     this.rafId = null;
 
+    // Duplica o conteúdo para criar o efeito de rolagem infinita,
+    // mas somente se o container ainda não foi duplicado.
     if (!this.container.dataset.duplicated) {
       this.container.innerHTML += this.container.innerHTML;
       this.container.dataset.duplicated = 'true';
@@ -81,7 +100,7 @@ class Marquee {
       cancelAnimationFrame(this.rafId);
       this.rafId = null;
     }
-    // Remove os event listeners para que possam ser re-adicionados na nova instância
+    // Remove os event listeners para que possam ser re-adicionados em nova instância
     this.container.removeEventListener('mouseenter', this.handleMouseEnter);
     this.container.removeEventListener('mouseleave', this.handleMouseLeave);
     delete this.container.dataset.marqueeListenersAdded;
@@ -90,7 +109,7 @@ class Marquee {
 
 /**
  * Função para configurar o marquee em um container específico.
- * Se já houver uma instância, atualiza a velocidade.
+ * Se já houver uma instância, atualiza a velocidade e o extraGap.
  */
 function setupMarquee(container, speed, extraGap = 0) {
   if (!container) return;
@@ -136,19 +155,24 @@ export function setupNichoButtons() {
       const marqueeContainer = targetSection
         ? targetSection.querySelector('.cards-servicos-items')
         : null;
+
       if (window.innerWidth >= 890) {
         if (marqueeContainer) {
-          // Usa currentSpeed e currentExtraGap para manter a referência original
+          // Inicia o marquee utilizando os valores globais
           setupMarquee(marqueeContainer, currentSpeed, currentExtraGap);
         }
       } else {
-        // Se for menor, garante que não haverá animação e reseta o transform
+        // Em telas menores que 890px:
         if (marqueeContainer) {
+          // Se existir uma instância do marquee, cancela a animação
           if (marqueeContainer._marqueeInstance) {
             marqueeContainer._marqueeInstance.cancel();
             marqueeContainer._marqueeInstance = null;
           }
+          // Reseta o transform para que inicie do primeiro card
           marqueeContainer.style.transform = 'none';
+          // Remove a duplicação dos itens, permitindo o scroll manual
+          removeMarqueeDuplication(marqueeContainer);
         }
       }
     });
@@ -190,6 +214,7 @@ export function initMarqueeAllNichos(speed = 1, extraGap = 0) {
           activeMarqueeContainer._marqueeInstance = null;
         }
         activeMarqueeContainer.style.transform = 'none';
+        removeMarqueeDuplication(activeMarqueeContainer);
       }
     }
   });
