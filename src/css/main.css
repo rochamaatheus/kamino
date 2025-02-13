@@ -893,14 +893,13 @@ section h2 {
   height: 100%;
 }
 .servicos .svg-top {
-  top: 0;
+  top: -50.13px;
   transform: rotate(180deg);
-  margin-top: -1px; /* ajuste conforme necessário */
 }
 .servicos .svg-bottom {
   bottom: 0;
-  transform: rotate(180deg);
   margin-bottom: -1px; /* ajuste conforme necessário */
+  transform: rotate(180deg);
 }
 .servicos .separador-efeito {
   width: 120px;
@@ -954,13 +953,6 @@ section h2 {
   height: 200%;
   background: radial-gradient(circle at 50% 50%, rgba(15, 159, 191, 0.1) 0%, transparent 60%);
   animation: rotate 20s linear infinite;
-}
-.servicos .separador-estilizado {
-  width: 100%;
-  max-width: 300px;
-  height: 2px;
-  margin: 2rem auto;
-  background: linear-gradient(90deg, #0f9fbf 0%, #0a7aa6 100%);
 }
 .servicos .nicho-selector {
   display: flex;

@@ -43,15 +43,14 @@
   }
 
   .svg-top {
-    top: 0;
+    top: -50.13px;
     transform: rotate(180deg);
-    margin-top: -1px; /* ajuste conforme necessário */
   }
 
   .svg-bottom {
     bottom: 0;
-    transform: rotate(180deg);
     margin-bottom: -1px; /* ajuste conforme necessário */
+    transform: rotate(180deg);
   }
 
   .separador-efeito {
@@ -114,14 +113,6 @@
       );
       animation: rotate 20s linear infinite;
     }
-  }
-
-  .separador-estilizado {
-    width: 100%;
-    max-width: 300px;
-    height: 2px;
-    margin: 2rem auto;
-    background: linear-gradient(90deg, $azul-claro 0%, $azul-medio 100%);
   }
 
   .nicho-selector {
