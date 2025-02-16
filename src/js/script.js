@@ -6,6 +6,36 @@ import { inicializarFormulario } from './modulos/formulario.js';
 import { initMarqueeAllNichos } from './modulos/marquee.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+
+      const targetId = e.currentTarget.getAttribute('href').substring(1);
+      let targetElement;
+
+      if (targetId) {
+        targetElement = document.getElementById(targetId);
+      } else {
+        targetElement = document.body;
+      }
+
+      if (targetElement) {
+        const threeRem =
+          parseFloat(getComputedStyle(document.documentElement).fontSize) * 3;
+
+        const elementPosition =
+          targetElement.getBoundingClientRect().top + window.pageYOffset;
+
+        const offsetPosition = elementPosition - threeRem;
+
+        window.scrollTo({
+          top: offsetPosition < 0 ? 0 : offsetPosition,
+          behavior: 'smooth',
+        });
+      }
+    });
+  });
+
   // 1) Menu Mobile
   inicializarMenuMobile();
 
