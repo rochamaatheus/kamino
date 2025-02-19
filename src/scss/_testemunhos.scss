@@ -13,32 +13,21 @@
   padding: 4rem 1rem;
   position: relative;
   overflow: hidden;
-  visibility: hidden;
+  visibility: hidden; // para animação fade-in
   top: 2px;
 
-  &__container {
-    display: grid;
-    justify-items: center;
-    margin: 0 auto;
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-    gap: 1.5rem;
-    max-width: 1400px;
-    padding: 1rem;
-    will-change: transform;
-    min-height: 1px;
-  }
-
+  // Animação fade-in
   &.fade-in {
     opacity: 0;
     transform: translateY(20px);
     will-change: opacity, transform;
   }
-
   &.show {
     animation: fadeInUp 0.8s ease forwards;
     visibility: visible;
   }
 
+  // Fundo decorativo (SVG)
   &::before {
     content: '';
     position: absolute;
@@ -69,8 +58,67 @@
       margin: 1rem auto 0;
     }
   }
+
+  &__container {
+    position: relative; // para posicionar os botões de navegação
+    overflow: hidden; // mantém o corte dos slides fora da tela
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+    will-change: transform;
+    min-height: 1px;
+  }
+
+  &__slides {
+    display: flex;
+    gap: 2rem; // Espaço entre os cards
+    transition: transform 0.4s ease;
+
+    // Por padrão, 3 cards por slide
+    > .testemunho-card {
+      flex: 0 0 calc((100% - 4rem) / 3);
+    }
+  }
+
+  &__nav {
+    // Botões de navegação
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    // Largura e altura fixas para ficar redondo
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Fundo mais escuro e menos transparente para não atrapalhar a leitura
+    // Você pode ajustar a cor se ainda achar claro/escuro demais.
+    background-color: rgba($azul-escuro, 0.8);
+
+    border: none;
+    color: $branco-fundo;
+    font-size: 1.2rem; // pode ajustar conforme tamanho desejado da seta
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &--prev {
+      left: 1rem; // Botão à esquerda, dentro do contêiner
+    }
+    &--next {
+      right: 1rem; // Botão à direita, dentro do contêiner
+    }
+
+    &:hover {
+      background-color: rgba($azul-escuro, 0.95);
+      transform: translateY(-50%) scale(1.08);
+    }
+  }
 }
 
+// Cartão de cada testemunho
 .testemunho-card {
   background: rgba($branco-fundo, 0.08);
   padding: 1.5rem;
@@ -135,6 +183,7 @@
     font-weight: 700;
     background: linear-gradient(45deg, $branco-fundo 0%, $azul-claro 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     backface-visibility: hidden;
   }
@@ -195,6 +244,7 @@
   }
 }
 
+/* Responsividade */
 @media (min-width: 480px) {
   .testemunho-card {
     &__top {
@@ -216,7 +266,6 @@
     padding: 6rem 2rem;
 
     &__container {
-      gap: 2.5rem;
       padding: 2rem;
     }
 
@@ -248,13 +297,6 @@
 }
 
 @media (min-width: 992px) {
-  .testemunhos {
-    &__container {
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
-    }
-  }
-
   .testemunho-card {
     &:hover {
       transform: translateY(-10px) scale(1.02);
@@ -262,6 +304,25 @@
   }
 }
 
+/* Media Query: abaixo de 1000px, exibe 2 cards por tela */
+@media (max-width: 1000px) {
+  .testemunhos__slides {
+    > .testemunho-card {
+      flex: 0 0 calc((100% - 2rem) / 2);
+    }
+  }
+}
+
+/* Media Query: abaixo de 600px, exibe 1 card por tela */
+@media (max-width: 600px) {
+  .testemunhos__slides {
+    > .testemunho-card {
+      flex: 0 0 calc(100% - 1rem);
+    }
+  }
+}
+
+/* Animações */
 @media (prefers-reduced-motion: no-preference) {
   .testemunhos::before {
     animation: float 20s linear infinite;

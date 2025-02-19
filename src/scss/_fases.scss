@@ -33,8 +33,9 @@
         margin-bottom: 1rem;
       }
 
+      // Título com tamanho responsivo e centralização em telas pequenas
       h2#fases-heading {
-        font-size: 2rem;
+        font-size: clamp(1.6rem, 4vw, 2rem);
         color: $azul-medio;
         margin-bottom: 1rem;
         font-weight: 700;
@@ -49,10 +50,13 @@
           width: 50px;
           height: 3px;
           background-color: $azul-medio;
+          margin-top: 0.5rem;
         }
 
-        @media (max-width: 480px) {
-          font-size: 1.6rem;
+        @media (max-width: 768px) {
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
 
@@ -100,11 +104,11 @@
     }
   }
 
-  // Container das fases
+  // Container das fases: utiliza grid para melhor controle de layout e alturas uniformes
   .container-fases {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-auto-rows: 1fr; // Força cada linha a ter a mesma altura
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -120,12 +124,12 @@
 
   // Cartão individual de cada fase
   .card-fase {
+    display: flex;
+    flex-direction: column;
+    height: 100%; // Garante que o cartão preencha a altura da célula do grid
     background-color: #fff;
     border: 2px solid $azul-medio;
     border-radius: 12px;
-    flex: 1 1 240px;
-    max-width: 280px;
-    min-width: 240px;
     padding: 2rem;
     text-align: center;
     position: relative;
@@ -133,14 +137,10 @@
     transition: transform $transition-default, box-shadow $transition-default;
 
     @media (max-width: 768px) {
-      flex: 1 1 200px;
-      max-width: 300px;
       padding: 1.5rem;
     }
 
     @media (max-width: 480px) {
-      flex: 1 1 100%;
-      max-width: 100%;
       padding: 1rem;
     }
 
@@ -175,6 +175,7 @@
       font-size: 0.95rem;
       color: $azul-escuro;
       line-height: 1.5;
+      flex-grow: 1; // Permite que o parágrafo expanda para ocupar espaço disponível
     }
 
     &::before {
