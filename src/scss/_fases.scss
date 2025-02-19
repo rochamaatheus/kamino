@@ -84,10 +84,9 @@
         }
       }
     }
-
     .fases-imagem {
       flex: 1;
-      text-align: right;
+      position: relative; /* Para que a imagem possa sair do fluxo normal */
 
       @media (max-width: 768px) {
         text-align: center;
@@ -96,10 +95,16 @@
       }
 
       img {
-        max-width: 100%;
+        position: absolute;
+        top: -300px; /* Ajuste conforme necessário */
+        left: 60%;
+        transform: translateX(-50%) scaleX(-1) rotate(-15deg);
+        width: 160%; /* Maior que o container */
+        max-width: none; /* Removendo limitações de largura */
         height: auto;
         border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        filter: drop-shadow(15px 15px 20px rgba(0, 0, 0, 0.3));
+        z-index: 10;
       }
     }
   }
