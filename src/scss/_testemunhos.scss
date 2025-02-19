@@ -1,33 +1,16 @@
 @use './variables' as *;
-@use 'sass:string';
-@use 'sass:meta';
-@use 'sass:color';
 
 .testemunhos {
   background: linear-gradient(
     140deg,
-    color.adjust($azul-medio, $lightness: -8%) 40%,
-    color.adjust($azul-escuro, $saturation: 20%) 100%
+    adjust-color($azul-medio, $lightness: -8%) 40%,
+    adjust-color($azul-escuro, $saturation: 20%) 100%
   );
-  color: $branco-fundo;
-  padding: 4rem 1rem;
+  padding: 6rem 1rem;
   position: relative;
   overflow: hidden;
-  visibility: hidden; // para animação fade-in
-  top: 2px;
+  color: $branco-fundo;
 
-  // Animação fade-in
-  &.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    will-change: opacity, transform;
-  }
-  &.show {
-    animation: fadeInUp 0.8s ease forwards;
-    visibility: visible;
-  }
-
-  // Fundo decorativo (SVG)
   &::before {
     content: '';
     position: absolute;
@@ -35,192 +18,96 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23#{string.slice(meta.inspect(rgba($azul-claro, 0.05)), 5)}" /></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23#{str-slice(inspect(rgba($azul-claro, 0.05)), 5)}" /></svg>');
     opacity: 0.15;
+    animation: float 20s linear infinite;
   }
 
   h2 {
-    color: $branco-fundo;
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    margin-bottom: 2rem;
     text-align: center;
-    font-weight: 800;
-    padding: 0 1rem;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    backface-visibility: hidden;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 4rem;
+    position: relative;
+    color: $branco-fundo;
 
     &::after {
       content: '';
       display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, $azul-claro 0%, transparent 100%);
-      margin: 1rem auto 0;
+      width: 120px;
+      height: 3px;
+      background: $highlight;
+      margin: 1.5rem auto 0;
     }
   }
 
   &__container {
-    position: relative; // para posicionar os botões de navegação
-    overflow: hidden; // mantém o corte dos slides fora da tela
     max-width: 1400px;
     margin: 0 auto;
-    padding: 1rem;
-    will-change: transform;
-    min-height: 1px;
+    position: relative;
+    padding: 0 2rem;
+  }
+
+  &__slides-wrapper {
+    overflow: hidden;
+    padding: 2rem 0;
   }
 
   &__slides {
     display: flex;
-    gap: 2rem; // Espaço entre os cards
-    transition: transform 0.4s ease;
-
-    // Por padrão, 3 cards por slide
-    > .testemunho-card {
-      flex: 0 0 calc((100% - 4rem) / 3);
-    }
+    gap: 2rem;
+    transition: transform $transition-default;
+    will-change: transform;
   }
 
   &__nav {
-    // Botões de navegação
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    // Largura e altura fixas para ficar redondo
-    width: 44px;
-    height: 44px;
+    width: 50px;
+    height: 50px;
+    background: rgba($azul-medio, 0.9);
+    border: 1px solid rgba($branco-fundo, 0.3);
+    border-radius: 50%;
+    color: $branco-fundo;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all $transition-default;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    // Fundo mais escuro e menos transparente para não atrapalhar a leitura
-    // Você pode ajustar a cor se ainda achar claro/escuro demais.
-    background-color: rgba($azul-escuro, 0.8);
-
-    border: none;
-    color: $branco-fundo;
-    font-size: 1.2rem; // pode ajustar conforme tamanho desejado da seta
-    cursor: pointer;
-    border-radius: 50%;
     z-index: 10;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-
-    &--prev {
-      left: 1rem; // Botão à esquerda, dentro do contêiner
-    }
-    &--next {
-      right: 1rem; // Botão à direita, dentro do contêiner
-    }
 
     &:hover {
-      background-color: rgba($azul-escuro, 0.95);
-      transform: translateY(-50%) scale(1.08);
+      background: $highlight;
+      transform: translateY(-50%) scale(1.1);
+      border-color: transparent;
+    }
+
+    &--prev {
+      left: 0;
+    }
+
+    &--next {
+      right: 0;
     }
   }
 }
 
-// Cartão de cada testemunho
 .testemunho-card {
+  flex: 0 0 calc(33.333% - 1.33rem);
   background: rgba($branco-fundo, 0.08);
-  padding: 1.5rem;
-  border-radius: 16px;
   border: 1px solid rgba($branco-fundo, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
   backdrop-filter: blur(12px);
-  transition: all $transition-default;
+  transition: transform $transition-default,
+    border-top-color $transition-default;
   position: relative;
   overflow: hidden;
-  isolation: isolate;
-  transform: translateZ(0);
-
-  @supports not (backdrop-filter: blur(12px)) {
-    background: rgba($branco-fundo, 0.15);
-  }
-
-  &__top {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    backface-visibility: hidden;
-  }
-
-  &__img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 0;
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-    transform: translateZ(0);
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      backface-visibility: hidden;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 2px solid rgba($azul-claro, 0.5);
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba($azul-claro, 0.2);
-    }
-  }
-
-  &__info {
-    text-align: left;
-  }
-
-  &__nome {
-    font-size: 1.2rem;
-    font-weight: 700;
-    background: linear-gradient(45deg, $branco-fundo 0%, $azul-claro 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    backface-visibility: hidden;
-  }
-
-  &__cargo {
-    font-size: 0.85rem;
-    color: rgba($branco-fundo, 0.8);
-    font-weight: 300;
-  }
-
-  &__texto {
-    font-size: clamp(0.95rem, 2vw, 1.1rem);
-    line-height: 1.6;
-    color: rgba($branco-fundo, 0.9);
-    position: relative;
-    padding-left: 1.5rem;
-    backface-visibility: hidden;
-
-    &::before {
-      content: '“';
-      position: absolute;
-      left: -0.5rem;
-      top: -0.8rem;
-      font-size: 3rem;
-      font-family: serif;
-      color: rgba($azul-claro, 0.5);
-      font-weight: 700;
-    }
-  }
-
-  &:hover {
-    transform: translateY(-8px) scale(1.02);
-
-    .testemunho-card__img img {
-      transform: scale(1.1) rotate(2deg);
-    }
-  }
+  min-width: 300px;
+  border-top: 3px solid transparent;
+  margin-top: 3px;
+  will-change: transform;
 
   &::before {
     content: '';
@@ -231,112 +118,95 @@
     height: 200%;
     background: linear-gradient(
       45deg,
-      transparent 40%,
-      rgba($azul-claro, 0.1) 60%,
+      transparent 20%,
+      rgba($highlight, 0.1) 50%,
       transparent 80%
     );
-    animation: shineOverlay 15s infinite linear paused;
+    animation: shine 12s infinite linear;
     opacity: 0.3;
   }
 
-  &:hover::before {
-    animation-play-state: running;
-  }
-}
-
-/* Responsividade */
-@media (min-width: 480px) {
-  .testemunho-card {
-    &__top {
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    &__img {
-      width: 55px;
-      height: 55px;
-      margin-right: 1rem;
-    }
-  }
-}
-
-@media (min-width: 768px) {
-  .testemunhos {
-    padding: 6rem 2rem;
-
-    &__container {
-      padding: 2rem;
-    }
-
-    h2 {
-      margin-bottom: 3rem;
-    }
+  &:hover {
+    transform: translateY(-8px);
+    border-top-color: $highlight;
   }
 
-  .testemunho-card {
-    padding: 2rem;
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
 
-    &__texto {
-      padding-left: 2rem;
-      line-height: 1.7;
+  &__img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
 
-      &::before {
-        left: -1rem;
-        top: -1.2rem;
-        font-size: 4rem;
-      }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-default;
     }
 
-    &__img {
-      width: 60px;
-      height: 60px;
-      margin-right: 1.5rem;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid rgba($azul-claro, 0.4);
+      border-radius: 50%;
     }
   }
-}
 
-@media (min-width: 992px) {
-  .testemunho-card {
-    &:hover {
-      transform: translateY(-10px) scale(1.02);
-    }
+  &__info {
+    flex: 1;
   }
-}
 
-/* Media Query: abaixo de 1000px, exibe 2 cards por tela */
-@media (max-width: 1000px) {
-  .testemunhos__slides {
-    > .testemunho-card {
-      flex: 0 0 calc((100% - 2rem) / 2);
-    }
+  &__nome {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $branco-fundo;
+    margin-bottom: 0.25rem;
   }
-}
 
-/* Media Query: abaixo de 600px, exibe 1 card por tela */
-@media (max-width: 600px) {
-  .testemunhos__slides {
-    > .testemunho-card {
-      flex: 0 0 calc(100% - 1rem);
+  &__cargo {
+    font-size: 0.95rem;
+    color: rgba($branco-fundo, 0.8);
+    font-weight: 300;
+  }
+
+  &__texto {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba($branco-fundo, 0.9);
+    position: relative;
+    padding-left: 2rem;
+
+    &::before {
+      content: '“';
+      position: absolute;
+      left: -0.5rem;
+      top: -1rem;
+      font-size: 4rem;
+      color: rgba($highlight, 0.4);
+      font-family: serif;
     }
   }
 }
 
-/* Animações */
-@media (prefers-reduced-motion: no-preference) {
-  .testemunhos::before {
-    animation: float 20s linear infinite;
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
   }
-
-  .testemunho-card::before {
-    animation-play-state: running;
-  }
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0) translateZ(0);
+  100% {
+    transform: translateX(100%) rotate(45deg);
   }
 }
 
@@ -352,11 +222,22 @@
   }
 }
 
-@keyframes shineOverlay {
-  0% {
-    transform: rotate(0deg) translateX(-50%);
+// Responsividade
+@media (max-width: 1200px) {
+  .testemunho-card {
+    flex: 0 0 calc(50% - 1rem);
   }
-  100% {
-    transform: rotate(360deg) translateX(50%);
+}
+
+@media (max-width: 768px) {
+  .testemunhos__nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .testemunho-card {
+    flex: 0 0 100%;
+    min-width: auto;
   }
 }
