@@ -1,10 +1,13 @@
+@use 'sass:color';
+@use 'sass:meta';
+@use 'sass:string';
 @use './variables' as *;
 
-.testemunhos {
+.case_equipe {
   background: linear-gradient(
     140deg,
-    adjust-color($azul-medio, $lightness: -8%) 40%,
-    adjust-color($azul-escuro, $saturation: 20%) 100%
+    color.adjust($azul-medio, $lightness: -8%) 40%,
+    color.adjust($azul-escuro, $saturation: 20%) 100%
   );
   padding: 6rem 1rem;
   position: relative;
@@ -18,7 +21,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23#{str-slice(inspect(rgba($azul-claro, 0.05)), 5)}" /></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 50 Q50 30 100 50 Q75 70 50 50 Q25 30 0 50" fill="%23#{string.slice(meta.inspect(rgba($azul-claro, 0.05)), 5)}" /></svg>');
     opacity: 0.15;
     animation: float 20s linear infinite;
   }
@@ -47,11 +50,7 @@
     padding: 0 2rem;
   }
 
-  &__slides-wrapper {
-    overflow: hidden;
-    padding: 2rem 0;
-  }
-
+  // Adicionado para os slides
   &__slides {
     display: flex;
     gap: 2rem;
@@ -93,12 +92,12 @@
   }
 }
 
-.testemunho-card {
+.case_equipe-card {
   flex: 0 0 calc(33.333% - 1.33rem);
   background: rgba($branco-fundo, 0.08);
   border: 1px solid rgba($branco-fundo, 0.15);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 0; // Padding removido para centralizar a imagem
   backdrop-filter: blur(12px);
   transition: transform $transition-default,
     border-top-color $transition-default;
@@ -131,72 +130,17 @@
     border-top-color: $highlight;
   }
 
-  &__top {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
   &__img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
+    width: 100%;
+    display: block;
+    min-height: 200px;
+    background-color: rgba($branco-fundo, 0.1);
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform $transition-default;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 2px solid rgba($azul-claro, 0.4);
-      border-radius: 50%;
-    }
-  }
-
-  &__info {
-    flex: 1;
-  }
-
-  &__nome {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: $branco-fundo;
-    margin-bottom: 0.25rem;
-  }
-
-  &__cargo {
-    font-size: 0.95rem;
-    color: rgba($branco-fundo, 0.8);
-    font-weight: 300;
-  }
-
-  &__texto {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: rgba($branco-fundo, 0.9);
-    position: relative;
-    padding-left: 2rem;
-
-    &::before {
-      content: '“';
-      position: absolute;
-      left: -0.5rem;
-      top: -1rem;
-      font-size: 4rem;
-      color: rgba($highlight, 0.4);
-      font-family: serif;
+      display: block;
     }
   }
 }
@@ -222,21 +166,20 @@
   }
 }
 
-// Responsividade
 @media (max-width: 1200px) {
-  .testemunho-card {
+  .case_equipe-card {
     flex: 0 0 calc(50% - 1rem);
   }
 }
 
 @media (max-width: 768px) {
-  .testemunhos__nav {
+  .case_equipe__nav {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
   }
 
-  .testemunho-card {
+  .case_equipe-card {
     flex: 0 0 100%;
     min-width: auto;
   }

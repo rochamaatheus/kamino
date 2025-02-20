@@ -1,13 +1,13 @@
-export class TestemunhosCarousel {
+export class CaseEquipeCarousel {
   constructor(containerSelector) {
     this.container = document.querySelector(containerSelector);
     if (!this.container) return;
 
     // Elementos internos
-    this.slidesContainer = this.container.querySelector('.testemunhos__slides');
-    this.slides = this.container.querySelectorAll('.testemunho-card');
-    this.prevBtn = this.container.querySelector('.testemunhos__nav--prev');
-    this.nextBtn = this.container.querySelector('.testemunhos__nav--next');
+    this.slidesContainer = this.container.querySelector('.case_equipe__slides');
+    this.slides = this.container.querySelectorAll('.case_equipe-card');
+    this.prevBtn = this.container.querySelector('.case_equipe__nav--prev');
+    this.nextBtn = this.container.querySelector('.case_equipe__nav--next');
 
     // Estado
     this.currentIndex = 0;

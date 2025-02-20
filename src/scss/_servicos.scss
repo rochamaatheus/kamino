@@ -43,7 +43,7 @@
   }
 
   .svg-top {
-    top: -50.13px;
+    top: -49px;
     transform: rotate(180deg);
   }
 
@@ -51,28 +51,6 @@
     bottom: 0;
     margin-bottom: -1px; /* ajuste conforme necessário */
     transform: rotate(180deg);
-  }
-
-  .separador-efeito {
-    width: 120px;
-    height: 4px;
-    background: linear-gradient(90deg, $azul-claro 0%, $azul-medio 100%);
-    margin: 2rem auto;
-    border-radius: 2px;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: -6px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 12px;
-      height: 12px;
-      background: $azul-claro;
-      border-radius: 50%;
-      box-shadow: 0 0 15px rgba($azul-claro, 0.5);
-    }
   }
 
   h2 {

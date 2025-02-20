@@ -104,19 +104,9 @@
           border-left-color: $azul-medio;
           box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
 
-          i {
-            color: color.scale($azul-medio, $lightness: 15%);
-            transform: scale(1.1);
-          }
-
           p::after {
             width: 100%;
           }
-        }
-
-        i {
-          transition: all 0.3s ease;
-          filter: drop-shadow(0 2px 4px rgba($azul-medio, 0.2));
         }
 
         p {

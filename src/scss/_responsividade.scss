@@ -124,46 +124,13 @@
     }
   }
 
-  /* COMPARATIVO */
-  .comparativo {
-    padding: 2rem 1rem;
-    p {
-      margin: 1rem auto;
-      font-size: 1rem;
-    }
-    .cards-profissionais {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
-
-  /* METODOLOGIA */
-  .metodologia {
-    .container-metodologia {
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-
-      .grafico-circular {
-        margin-bottom: 1rem;
-        max-width: 250px;
-        max-height: 250px;
-      }
-
-      .desc-metodologia {
-        max-width: 100%;
-        text-align: center;
-      }
-    }
-  }
-
-  /* TESTEMUNHOS */
-  .testemunhos {
-    .testemunhos-container {
+  /* CASE EQUIPE */
+  .case_equipe {
+    .case_equipe__container {
       flex-direction: column;
       align-items: center;
     }
-    .testemunho-card {
+    .case_equipe-card {
       max-width: 90%;
     }
   }
@@ -186,9 +153,6 @@
   form {
     max-width: 100%;
     margin: 0 auto;
-    h3 {
-      font-size: 1.2rem;
-    }
     button {
       width: 100%;
     }

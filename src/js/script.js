@@ -3,7 +3,7 @@ import { inicializarAnimacoesScroll } from './modulos/animacoesScroll.js';
 import { setupScrollAnimation } from './modulos/scrollAnimation.js';
 import { inicializarFormulario } from './modulos/formulario.js';
 import { initMarqueeAllNichos } from './modulos/marquee.js';
-import { TestemunhosCarousel } from './modulos/testemunhoCarousel.js';
+import { CaseEquipeCarousel } from './modulos/caseEquipeCarousel.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -52,5 +52,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initMarqueeAllNichos(1, 48);
 
   // 6) Carousel testemunho
-  const carousel = new TestemunhosCarousel('#testemunhos');
+  const carousel = new CaseEquipeCarousel('#case_equipe');
 });

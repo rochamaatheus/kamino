@@ -30,16 +30,14 @@
       align-items: center;
       gap: 0.5rem;
       transition: transform 0.3s ease;
+      max-width: 220px;
+
+      svg {
+        height: 80px;
+      }
 
       &:hover {
         transform: scale(1.05);
-      }
-
-      &::before {
-        content: '▹';
-        color: $azul-claro;
-        font-size: 2rem;
-        transform: rotate(-45deg);
       }
     }
 
