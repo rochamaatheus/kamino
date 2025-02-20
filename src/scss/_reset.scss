@@ -12,6 +12,9 @@ body {
   background-color: $branco-fundo;
   color: $azul-escuro;
 }
+body {
+  overflow-x: hidden;
+}
 img {
   display: block;
   max-width: 100%;

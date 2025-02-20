@@ -14,7 +14,7 @@
     max-width: 1200px;
     margin: 0 auto 3rem;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
       flex-direction: column;
       text-align: center;
     }
@@ -41,7 +41,7 @@
         font-weight: 700;
         line-height: 1.2;
         position: relative;
-        display: inline-block;
+        display: block;
         text-align: left;
 
         &::after {
@@ -53,10 +53,15 @@
           margin-top: 0.5rem;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1200px) {
           text-align: center;
           margin-left: auto;
           margin-right: auto;
+          &::after {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
       }
 
