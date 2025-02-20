@@ -201,7 +201,7 @@
     padding: 0;
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 
     li {
       padding: 1.5rem;
@@ -234,7 +234,10 @@
     }
 
     @media (max-width: 768px) {
-      grid-template-columns: 1fr; /* De 2 colunas para 1 coluna em telas menores */
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
     }
   }
 
